@@ -33,7 +33,7 @@ dependencies {
     compile "org.jetbrains.kotlin:kotlin-stdlib-jre7:$kotlin_version"
     compile rootProject.ext.dependencies["appcompat"]
     compile rootProject.ext.dependencies["design"]
-//    compile rootProject.ext.dependencies["support-v4"]
+    compile rootProject.ext.dependencies["support-v4"]
     compile rootProject.ext.dependencies["cardview-v7"]
     compile rootProject.ext.dependencies["recyclerview-v7"]
     compile rootProject.ext.dependencies["support-annotations"]
@@ -64,6 +64,20 @@ dependencies {
     //RxAndroid https://github.com/ReactiveX/RxAndroid/tree/2.x
     compile rootProject.ext.dependencies["rxandroid2"]
 
+    //RxLifecycle https://github.com/trello/RxLifecycle/tree/2.x
+    compile rootProject.ext.dependencies["rxlifecycle2-components"]
+    compile rootProject.ext.dependencies["rxlifecycle2-kotlin"]
+
+    //RxBinding https://github.com/JakeWharton/RxBinding
+    compile rootProject.ext.dependencies["rxbinding2-kotlin"]
+    compile rootProject.ext.dependencies["rxbinding2-support-v4-kotlin"]
+    compile rootProject.ext.dependencies["rxbinding2-appcompat-v7-kotlin"]
+    compile rootProject.ext.dependencies["rxbinding2-design-kotlin"]
+    compile rootProject.ext.dependencies["rxbinding2-recyclerview-v7-kotlin"]
+
+    //dagger2 https://github.com/google/dagger
+    compile rootProject.ext.dependencies["dagger"]
+    kapt rootProject.ext.dependencies["dagger-compiler"]
 }
 
 repositories {
