@@ -96,7 +96,7 @@ class ClientModule {
 
     @Singleton
     @Provides
-    fun provideIntercept(interceptor: RequestInterceptor): Interceptor = interceptor
+    fun provideIntercept(handler: GlobalHttpHandler?): Interceptor = RequestInterceptor(handler)
 
     @Singleton
     @Provides

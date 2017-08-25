@@ -13,16 +13,16 @@ object FileUtils {
      * 返回缓存文件夹
      */
     fun getCacheFile(context: Context): File {
-        if (Environment.getExternalStorageState() == Environment.MEDIA_MOUNTED) {
+        return if (Environment.getExternalStorageState() == Environment.MEDIA_MOUNTED) {
             var file = context.externalCacheDir//获取系统管理的外部存储目录
 //            var file=context.cacheDir//临时缓存文件保存到的内部目录
             if (file == null) {
                 file = File(getCacheFilePath(context))
                 makeDirs(file)
             }
-            return file
+            file
         } else {
-            return context.cacheDir
+            context.cacheDir
         }
     }
 

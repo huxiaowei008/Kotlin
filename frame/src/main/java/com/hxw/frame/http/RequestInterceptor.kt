@@ -16,8 +16,7 @@ import javax.inject.Singleton
  * 请求拦截器,主要打印返回结果
  * Created by hxw on 2017/8/18.
  */
-@Singleton
-class RequestInterceptor @Inject constructor(private val handler: GlobalHttpHandler?) : Interceptor {
+class RequestInterceptor (private val handler: GlobalHttpHandler?) : Interceptor {
 
     override fun intercept(chain: Interceptor.Chain): Response {
         val request = chain.request()
