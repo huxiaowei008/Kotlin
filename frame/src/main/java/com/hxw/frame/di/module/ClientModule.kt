@@ -5,13 +5,10 @@ import android.content.Context
 import com.google.gson.Gson
 import com.google.gson.GsonBuilder
 import com.hxw.frame.http.ErrorHandler
-import com.hxw.frame.http.GlobalHttpHandler
 import com.hxw.frame.http.OnResponseErrorListener
-import com.hxw.frame.http.RequestInterceptor
 import dagger.Module
 import dagger.Provides
 import okhttp3.HttpUrl
-import okhttp3.Interceptor
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
@@ -73,16 +70,8 @@ class ClientModule {
      */
     @Singleton
     @Provides
-    fun provideClient(application: Application, interceptor: Interceptor,
-                      configuration: OkHttpConfiguration?, handler: GlobalHttpHandler?): OkHttpClient {
+    fun provideClient(application: Application, configuration: OkHttpConfiguration?): OkHttpClient {
         val builder = OkHttpClient.Builder()
-                .addNetworkInterceptor(interceptor)
-//        if (handler != null) {
-        builder.addInterceptor { chain ->
-            chain.proceed(handler?.
-                    onHttpRequestBefore(chain, chain.request()))
-        }
-//        }
         configuration?.configOkHttp(application, builder)
         return builder.build()
     }
@@ -93,10 +82,6 @@ class ClientModule {
     interface OkHttpConfiguration {
         fun configOkHttp(context: Context, builder: OkHttpClient.Builder)
     }
-
-    @Singleton
-    @Provides
-    fun provideIntercept(handler: GlobalHttpHandler?): Interceptor = RequestInterceptor(handler)
 
     @Singleton
     @Provides
