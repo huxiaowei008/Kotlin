@@ -7,19 +7,37 @@ import com.hxw.frame.di.AppComponent
 import com.hxw.frame.di.DaggerAppComponent
 import com.hxw.frame.di.module.AppModule
 import com.hxw.frame.di.module.ClientModule
+import com.hxw.frame.di.module.GlobalConfigModule
+import com.hxw.frame.integration.ConfigModule
+import com.hxw.frame.integration.ManifestParser
 
 /**
  * Created by hxw on 2017/8/28.
  */
-class AppDelegate : AppLifecycle {
-
+class AppDelegate(context: Context) : AppLifecycle {
     companion object {
         var appComponent: AppComponent by DelegatesExt.notNullSingleValue()
         var instance: Application by DelegatesExt.notNullSingleValue()
     }
 
+    private val mAppLifecycle: MutableList<AppLifecycle> = mutableListOf()//application的生命内容外部拓展
+    //这里的activity生命周期回调是给外面拓展用的
+    private val activityLifecycle: MutableList<Application.ActivityLifecycleCallbacks> = mutableListOf()
+    //解析清单文件配置的自定义ConfigModule的metadata标签，返回一个ConfigModule集合
+    private val mModules: MutableList<ConfigModule> = ManifestParser(context).parse()
+    private var mActivityLifecycle: ActivityLifecycle by DelegatesExt.notNullSingleValue()
+
+    init {
+        mModules.forEach {
+            it.injectAppLifecycle(context, mAppLifecycle)
+            it.injectActivityLifecycle(context, activityLifecycle)
+        }
+    }
+
     override fun attachBaseContext(base: Context) {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        mAppLifecycle.forEach {
+            it.attachBaseContext(base)
+        }
     }
 
     override fun onCreate(application: Application) {
@@ -28,11 +46,42 @@ class AppDelegate : AppLifecycle {
                 .builder()
                 .appModule(AppModule(application))
                 .clientModule(ClientModule())
+                .globalConfigModule(getGlobeConfigModule(application, mModules))
                 .build()
         appComponent.inject(this)
+
+        mActivityLifecycle = ActivityLifecycle(mModules, application)
+        //注册activity生命周期的回调
+        application.registerActivityLifecycleCallbacks(mActivityLifecycle)
+        activityLifecycle.forEach {
+            application.registerActivityLifecycleCallbacks(it)
+        }
+
+        mAppLifecycle.forEach {
+            it.onCreate(application)
+        }
     }
 
     override fun onTerminate(application: Application) {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        application.unregisterActivityLifecycleCallbacks(mActivityLifecycle)
+        if (activityLifecycle.isNotEmpty()) {
+            activityLifecycle.forEach {
+                application.unregisterActivityLifecycleCallbacks(it)
+            }
+        }
+        if (mAppLifecycle.isNotEmpty()) {
+            mAppLifecycle.forEach {
+                it.onTerminate(application)
+            }
+        }
+
+    }
+
+    private fun getGlobeConfigModule(context: Context, modules: List<ConfigModule>): GlobalConfigModule {
+        val builder = GlobalConfigModule.Builder
+        modules.forEach {
+            it.applyOptions(context, builder)
+        }
+        return builder.build()
     }
 }

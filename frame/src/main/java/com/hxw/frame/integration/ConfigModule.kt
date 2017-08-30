@@ -27,7 +27,7 @@ interface ConfigModule {
      * @param lifecycle
      * @return
      */
-    fun injectAppLifecycle(context: Context, lifecycle: List<AppLifecycle>)
+    fun injectAppLifecycle(context: Context, lifecycle: MutableList<AppLifecycle>)
 
     /**
      * 使用{@link Application.ActivityLifecycleCallbacks}在Activity的生命周期中注入一些操作
@@ -35,7 +35,7 @@ interface ConfigModule {
      * @param context
      * @param lifecycle
      */
-    fun injectActivityLifecycle(context: Context, lifecycle: List<Application.ActivityLifecycleCallbacks>)
+    fun injectActivityLifecycle(context: Context, lifecycle: MutableList<Application.ActivityLifecycleCallbacks>)
 
     /**
      * 使用{@link FragmentManager.FragmentLifecycleCallbacks}在Fragment的生命周期中注入一些操作
@@ -43,5 +43,5 @@ interface ConfigModule {
      * @param context
      * @param lifecycle
      */
-    fun injectFragmentLifecycle(context: Context, lifecycle: List<FragmentManager.FragmentLifecycleCallbacks>)
+    fun injectFragmentLifecycle(context: Context, lifecycle: MutableList<FragmentManager.FragmentLifecycleCallbacks>)
 }

@@ -25,7 +25,6 @@ class GlobalConfigModule(builder: Builder) {
     private var retrofitConfiguration = builder.retrofitConfiguration
     private var okHttpConfiguration = builder.okHttpConfiguration
 
-    fun builder() = Builder
 
     @Singleton
     @Provides

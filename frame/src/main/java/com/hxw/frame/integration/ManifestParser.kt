@@ -11,8 +11,8 @@ class ManifestParser(private val context: Context) {
     private val TAG = "ManifestParser"
     private val MODULE_VALUE = "ConfigModule"
 
-    fun parse(): List<ConfigModule> {
-        val modules = arrayListOf<ConfigModule>()
+    fun parse(): MutableList<ConfigModule> {
+        val modules = mutableListOf<ConfigModule>()
         try {
             val appInfo = context.packageManager
                     .getApplicationInfo(context.packageName, PackageManager.GET_META_DATA)
