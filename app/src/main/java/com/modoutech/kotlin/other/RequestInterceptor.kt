@@ -1,7 +1,6 @@
-package com.hxw.frame.http
+package com.modoutech.kotlin.other
 
 import com.hxw.frame.utils.StringUtils
-import com.hxw.frame.utils.ZipUtils
 import okhttp3.*
 import okio.Buffer
 import timber.log.Timber
@@ -9,8 +8,6 @@ import java.io.IOException
 import java.net.URLDecoder
 import java.nio.charset.Charset
 import java.util.concurrent.TimeUnit
-import javax.inject.Inject
-import javax.inject.Singleton
 
 /**
  * 请求拦截器,主要打印返回结果

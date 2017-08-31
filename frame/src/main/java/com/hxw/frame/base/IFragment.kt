@@ -4,6 +4,7 @@ import android.os.Bundle
 import com.hxw.frame.di.AppComponent
 
 /**
+ * fragment基础接口
  * Created by hxw on 2017/8/29.
  */
 interface IFragment {
@@ -23,7 +24,7 @@ interface IFragment {
     /**
      * 初始化，会在onCreate中执行
      */
-    fun init(savedInstanceState: Bundle)
+    fun init(savedInstanceState: Bundle?)
 
 
 

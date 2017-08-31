@@ -5,10 +5,11 @@ import com.hxw.frame.base.delegate.AppDelegate
 import com.trello.rxlifecycle2.components.support.RxAppCompatActivity
 
 /**
+ * activity基类
  * Created by hxw on 2017/8/29.
  */
 abstract class BaseActivity : RxAppCompatActivity(), IActivity {
-    protected val TAG = this.javaClass.simpleName
+    protected val TAG = this.javaClass.simpleName!!
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

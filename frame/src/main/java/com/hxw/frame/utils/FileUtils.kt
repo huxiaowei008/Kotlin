@@ -5,6 +5,7 @@ import android.os.Environment
 import java.io.File
 
 /**
+ * 文件相关工具类
  * Created by hxw on 2017/8/19.
  */
 object FileUtils {

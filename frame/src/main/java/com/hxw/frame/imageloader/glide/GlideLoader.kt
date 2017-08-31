@@ -5,6 +5,7 @@ import android.widget.ImageView
 import com.hxw.frame.imageloader.IImageLoader
 
 /**
+ * glide的图片加载实现
  * Created by hxw on 2017/8/19.
  */
 class GlideLoader:IImageLoader {

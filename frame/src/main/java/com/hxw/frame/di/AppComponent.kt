@@ -2,13 +2,13 @@ package com.hxw.frame.di
 
 import android.app.Application
 import com.google.gson.Gson
-import com.hxw.frame.base.BaseApplication
 import com.hxw.frame.base.delegate.AppDelegate
 import com.hxw.frame.di.module.AppModule
 import com.hxw.frame.di.module.ClientModule
 import com.hxw.frame.di.module.GlobalConfigModule
 import com.hxw.frame.http.ErrorHandler
 import com.hxw.frame.imageloader.ImageLoader
+import com.hxw.frame.integration.RepositoryManager
 import dagger.Component
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit
@@ -30,6 +30,8 @@ interface AppComponent {
     fun okHttpClient(): OkHttpClient
 
     fun retrofit(): Retrofit
+
+    fun repositoryManager(): RepositoryManager
 
     //缓存文件根目录(RxCache和Glide的的缓存都已经作为子文件夹在这个目录里),
     //应该将所有缓存放到这个根目录里,便于管理和清理,可在GlobeConfigModule里配置

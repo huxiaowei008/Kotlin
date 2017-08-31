@@ -4,6 +4,7 @@ import kotlin.properties.ReadWriteProperty
 import kotlin.reflect.KProperty
 
 /**
+ * 额外代理方式
  * Created by hxw on 2017/8/28.
  */
 object DelegatesExt {

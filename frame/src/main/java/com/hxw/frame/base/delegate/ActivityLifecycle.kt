@@ -14,6 +14,7 @@ import com.hxw.frame.integration.ConfigModule
 import timber.log.Timber
 
 /**
+ * activity的生命周期回调监听
  * Created by hxw on 2017/8/29.
  */
 class ActivityLifecycle(private val modules: MutableList<ConfigModule>,

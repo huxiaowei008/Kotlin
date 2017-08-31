@@ -1,4 +1,4 @@
-package com.hxw.frame.http
+package com.modoutech.kotlin.other
 
 import okhttp3.Interceptor
 import okhttp3.Request

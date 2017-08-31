@@ -13,6 +13,7 @@ import javax.xml.transform.stream.StreamResult
 import javax.xml.transform.stream.StreamSource
 
 /**
+ * String相关工具类
  * Created by hxw on 2017/8/19.
  */
 object StringUtils {

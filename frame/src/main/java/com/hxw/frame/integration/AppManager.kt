@@ -6,6 +6,7 @@ import com.hxw.frame.base.delegate.AppDelegate
 import java.util.*
 
 /**
+ * APP的活动管理类
  * Created by hxw on 2017/8/29.
  */
 object AppManager {

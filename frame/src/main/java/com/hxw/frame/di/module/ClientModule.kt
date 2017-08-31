@@ -6,6 +6,7 @@ import com.google.gson.Gson
 import com.google.gson.GsonBuilder
 import com.hxw.frame.http.ErrorHandler
 import com.hxw.frame.http.OnResponseErrorListener
+import com.hxw.frame.integration.RepositoryManager
 import dagger.Module
 import dagger.Provides
 import okhttp3.HttpUrl
@@ -88,4 +89,9 @@ class ClientModule {
     fun provideErrorHandler(application: Application,
                             onResponseErrorListener: OnResponseErrorListener?)
             = ErrorHandler(application, onResponseErrorListener)
+
+
+    @Singleton
+    @Provides
+    fun provideRepositoryManager(retrofit: Retrofit) = RepositoryManager(retrofit)
 }

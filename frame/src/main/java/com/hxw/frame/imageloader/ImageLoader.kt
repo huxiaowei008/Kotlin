@@ -8,6 +8,7 @@ import javax.inject.Inject
 import javax.inject.Singleton
 
 /**
+ * 图片加载
  * Created by hxw on 2017/8/19.
  */
 @Singleton

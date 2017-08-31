@@ -1,4 +1,4 @@
-package com.hxw.frame.utils
+package com.modoutech.kotlin.other
 
 import java.io.ByteArrayInputStream
 import java.io.ByteArrayOutputStream

@@ -5,6 +5,7 @@ import android.content.pm.PackageManager
 import timber.log.Timber
 
 /**
+ * Manifest解析工具
  * Created by hxw on 2017/8/19.
  */
 class ManifestParser(private val context: Context) {
@@ -32,7 +33,7 @@ class ManifestParser(private val context: Context) {
         return modules
     }
 
-    fun parseModule(className: String): ConfigModule {
+    private fun parseModule(className: String): ConfigModule {
         val clazz = try {
             Class.forName(className)
         } catch (e: ClassNotFoundException) {

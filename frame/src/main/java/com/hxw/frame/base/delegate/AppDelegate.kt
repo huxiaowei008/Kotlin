@@ -12,6 +12,7 @@ import com.hxw.frame.integration.ConfigModule
 import com.hxw.frame.integration.ManifestParser
 
 /**
+ * application的代理
  * Created by hxw on 2017/8/28.
  */
 class AppDelegate(context: Context) : AppLifecycle {
