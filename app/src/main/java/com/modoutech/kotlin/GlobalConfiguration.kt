@@ -13,7 +13,6 @@ import timber.log.Timber
  */
 class GlobalConfiguration : ConfigModule {
     override fun applyOptions(context: Context, builder: GlobalConfigModule.Builder) {
-
     }
 
     override fun injectAppLifecycle(context: Context, lifecycle: MutableList<AppLifecycle>) {
