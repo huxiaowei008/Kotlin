@@ -2,6 +2,8 @@ package com.hxw.frame.imageloader.glide
 
 import android.content.Context
 import android.widget.ImageView
+import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions
+import com.hxw.frame.R
 import com.hxw.frame.imageloader.IImageLoader
 
 /**
@@ -10,14 +12,26 @@ import com.hxw.frame.imageloader.IImageLoader
  */
 class GlideLoader:IImageLoader {
     override fun displayUri(img: ImageView, uri: String) {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+            GlideApp.with(img.context)
+                    .load(uri)
+                    .placeholder(R.drawable.ic_placeholder)
+                    .error(R.drawable.ic_error)
+                    .transition(DrawableTransitionOptions.withCrossFade())
+                    .centerCrop()
+                    .into(img)
     }
 
     override fun displayRes(img: ImageView, res: Int) {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+            GlideApp.with(img.context)
+                    .load(res)
+                    .placeholder(R.drawable.ic_placeholder)
+                    .error(R.drawable.ic_error)
+                    .transition(DrawableTransitionOptions.withCrossFade())
+                    .centerCrop()
+                    .into(img)
     }
 
     override fun clear(context: Context) {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+       GlideApp.get(context).clearMemory()
     }
 }
