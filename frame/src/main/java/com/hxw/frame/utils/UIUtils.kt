@@ -1,8 +1,9 @@
 package com.hxw.frame.utils
 
-import android.app.Application
-import android.content.Context
-import android.widget.Toast
+import android.support.design.widget.Snackbar
+import android.view.View
+import com.hxw.frame.integration.AppManager
+import timber.log.Timber
 
 /**
  * UI界面工具类
@@ -10,6 +11,14 @@ import android.widget.Toast
  */
 object UIUtils {
 
-
+    fun showSnackBar(message: String, duration: Int = Snackbar.LENGTH_SHORT) {
+        if (AppManager.getCurrentActivity() == null) {
+            Timber.w("mCurrentActivity == null when showSnackBar")
+        } else {
+            val view: View = AppManager.getCurrentActivity()!!
+                    .window.decorView.findViewById(android.R.id.content)
+            Snackbar.make(view, message, duration).show()
+        }
+    }
 
 }
