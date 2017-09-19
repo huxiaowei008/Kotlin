@@ -2,6 +2,8 @@ package com.hxw.frame.utils
 
 import android.support.design.widget.Snackbar
 import android.view.View
+import android.widget.Toast
+import com.hxw.frame.base.delegate.AppDelegate
 import com.hxw.frame.integration.AppManager
 import timber.log.Timber
 
@@ -21,4 +23,7 @@ object UIUtils {
         }
     }
 
+    fun toast(message: String, duration: Int = Toast.LENGTH_SHORT) {
+        Toast.makeText(AppDelegate.instance, message, duration).show()
+    }
 }

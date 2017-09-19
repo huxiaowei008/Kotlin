@@ -5,6 +5,7 @@ import android.content.Context
 import com.hxw.frame.base.DelegatesExt
 import com.hxw.frame.di.AppComponent
 import com.hxw.frame.di.DaggerAppComponent
+
 import com.hxw.frame.di.module.AppModule
 import com.hxw.frame.di.module.ClientModule
 import com.hxw.frame.di.module.GlobalConfigModule

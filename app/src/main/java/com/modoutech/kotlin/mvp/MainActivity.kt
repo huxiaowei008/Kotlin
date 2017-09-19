@@ -1,9 +1,10 @@
-package com.modoutech.kotlin
+package com.modoutech.kotlin.mvp
 
 import android.graphics.Color
 import android.os.Bundle
 import com.hxw.frame.base.BaseActivity
 import com.hxw.frame.di.AppComponent
+import com.modoutech.kotlin.R
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : BaseActivity() {
