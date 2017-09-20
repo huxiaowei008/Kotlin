@@ -1,4 +1,4 @@
-package com.modoutech.kotlin
+package com.modoutech.kotlin.base
 
 import android.app.Application
 import android.content.Context
@@ -14,6 +14,7 @@ import com.hxw.frame.http.OnResponseErrorListener
 import com.hxw.frame.integration.ConfigModule
 import com.hxw.frame.utils.NullStringToEmptyFactory
 import com.hxw.frame.utils.UIUtils
+import com.modoutech.kotlin.BuildConfig
 import org.json.JSONException
 import retrofit2.HttpException
 import timber.log.Timber

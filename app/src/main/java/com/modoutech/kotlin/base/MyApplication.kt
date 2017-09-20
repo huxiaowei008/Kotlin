@@ -1,16 +1,27 @@
-package com.hxw.frame.base
+package com.modoutech.kotlin.base
 
 import android.app.Application
 import android.content.Context
+import com.hxw.frame.base.DaggerActivity
 import com.hxw.frame.base.delegate.AppDelegate
 import com.hxw.frame.base.delegate.AppLifecycle
+import com.modoutech.kotlin.di.DaggerAppComponent
+import dagger.android.AndroidInjector
+import dagger.android.support.DaggerApplication
 import kotlin.properties.Delegates
 
 /**
- * 基类application,可以实现自己的application,把这里的代码复制过去就好
- * Created by hxw on 2017/8/19.
+ * Created by hxw on 2017/9/20.
  */
-class BaseApplication : Application() {
+class MyApplication : DaggerApplication() {
+
+    override fun applicationInjector(): AndroidInjector<out DaggerApplication> {
+       return DaggerAppComponent
+                .builder()
+                .frameComponent(AppDelegate.FRAME_COMPONENT)
+                .build()
+
+    }
 
     private var mAppDelegate: AppLifecycle by Delegates.notNull()
 
@@ -21,14 +32,14 @@ class BaseApplication : Application() {
     }
 
     override fun onCreate() {
-        super.onCreate()
         mAppDelegate.onCreate(this)
+        super.onCreate()
+
     }
 
     override fun onTerminate() {
-        super.onTerminate()
         mAppDelegate.onTerminate(this)
+        super.onTerminate()
+
     }
-
-
 }

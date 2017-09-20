@@ -1,7 +1,6 @@
 package com.hxw.frame.base
 
 import android.os.Bundle
-import com.hxw.frame.base.delegate.AppDelegate
 import com.trello.rxlifecycle2.components.support.RxAppCompatActivity
 
 /**
@@ -13,7 +12,7 @@ abstract class BaseActivity : RxAppCompatActivity(), IActivity {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        componentInject(AppDelegate.appComponent)
+
         if (getLayoutId() != 0) {
             setContentView(getLayoutId())
         }

@@ -3,9 +3,8 @@ package com.hxw.frame.base.delegate
 import android.app.Application
 import android.content.Context
 import com.hxw.frame.base.DelegatesExt
-import com.hxw.frame.di.AppComponent
-import com.hxw.frame.di.DaggerAppComponent
-
+import com.hxw.frame.di.DaggerFrameComponent
+import com.hxw.frame.di.FrameComponent
 import com.hxw.frame.di.module.AppModule
 import com.hxw.frame.di.module.ClientModule
 import com.hxw.frame.di.module.GlobalConfigModule
@@ -18,8 +17,9 @@ import com.hxw.frame.integration.ManifestParser
  */
 class AppDelegate(context: Context) : AppLifecycle {
     companion object {
-        var appComponent: AppComponent by DelegatesExt.notNullSingleValue()
+        var FRAME_COMPONENT: FrameComponent by DelegatesExt.notNullSingleValue()
         var instance: Application by DelegatesExt.notNullSingleValue()
+
     }
 
     private val mAppLifecycle: MutableList<AppLifecycle> = mutableListOf()//application的生命内容外部拓展
@@ -44,13 +44,13 @@ class AppDelegate(context: Context) : AppLifecycle {
 
     override fun onCreate(application: Application) {
         instance = application
-        appComponent = DaggerAppComponent
+        FRAME_COMPONENT = DaggerFrameComponent
                 .builder()
                 .appModule(AppModule(application))
                 .clientModule(ClientModule())
                 .globalConfigModule(getGlobeConfigModule(application, mModules))
                 .build()
-        appComponent.inject(this)
+
 
         mActivityLifecycle = ActivityLifecycle(mModules, application)
         //注册activity生命周期的回调
@@ -86,4 +86,5 @@ class AppDelegate(context: Context) : AppLifecycle {
         }
         return builder.build()
     }
+
 }

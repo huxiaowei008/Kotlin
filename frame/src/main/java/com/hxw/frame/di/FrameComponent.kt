@@ -21,7 +21,7 @@ import javax.inject.Singleton
  */
 @Singleton
 @Component(modules = arrayOf(AppModule::class, ClientModule::class, GlobalConfigModule::class))
-interface AppComponent {
+interface FrameComponent {
 
     fun application(): Application
 
@@ -41,5 +41,4 @@ interface AppComponent {
 
     fun errorHandler(): ErrorHandler
 
-    fun inject(appDelegate: AppDelegate)
 }

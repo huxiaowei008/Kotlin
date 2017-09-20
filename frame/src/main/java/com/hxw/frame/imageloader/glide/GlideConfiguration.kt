@@ -30,7 +30,7 @@ class GlideConfiguration : AppGlideModule() {
             // Careful: the external cache directory doesn't enforce permissions
             //图片磁盘缓存文件最大值为100Mb
             val IMAGE_DISK_CACHE_MAX_SIZE = 100 * 1024 * 1024
-            val cacheDirectory = File(AppDelegate.appComponent.cacheFile(), "Glide")
+            val cacheDirectory = File(AppDelegate.FRAME_COMPONENT.cacheFile(), "Glide")
             DiskLruCacheWrapper.get(FileUtils.makeDirs(cacheDirectory),
                     IMAGE_DISK_CACHE_MAX_SIZE)
         }
@@ -52,7 +52,7 @@ class GlideConfiguration : AppGlideModule() {
         //Glide默认使用HttpURLConnection做网络请求,
         //用了OkHttpUrlLoader.Factory()后会换成OKhttp请求，在这放入我们自己创建的Okhttp
         registry.replace(GlideUrl::class.java, InputStream::class.java, OkHttpUrlLoader
-                .Factory(AppDelegate.appComponent.okHttpClient()))
+                .Factory(AppDelegate.FRAME_COMPONENT.okHttpClient()))
     }
 
 }

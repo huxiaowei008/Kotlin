@@ -1,7 +1,6 @@
 package com.hxw.frame.base
 
 import android.os.Bundle
-import com.hxw.frame.di.AppComponent
 
 /**
  * fragment基础接口
@@ -15,17 +14,17 @@ interface IFragment {
     fun getLayoutId(): Int
 
     /**
+     * @deprecated 使用了dagger2 2.11版本,这接口不需要了
      * 依赖注入的入口,提供AppComponent(提供所有的单例对象)给子类，进行Component依赖
      *
-     * @param appComponent 基础注入器
+     * @param frameComponent 基础注入器
      */
-    fun componentInject(appComponent: AppComponent)
+    //    fun componentInject(frameComponent: FrameComponent)
 
     /**
      * 初始化，会在onCreate中执行
      */
     fun init(savedInstanceState: Bundle?)
-
 
 
 }
