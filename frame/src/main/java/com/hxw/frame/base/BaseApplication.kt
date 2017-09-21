@@ -21,13 +21,15 @@ class BaseApplication : Application() {
     }
 
     override fun onCreate() {
-        super.onCreate()
         mAppDelegate.onCreate(this)
+        super.onCreate()
+
     }
 
     override fun onTerminate() {
-        super.onTerminate()
         mAppDelegate.onTerminate(this)
+        super.onTerminate()
+
     }
 
 

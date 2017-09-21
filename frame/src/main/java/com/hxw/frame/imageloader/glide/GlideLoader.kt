@@ -16,7 +16,7 @@ class GlideLoader:IImageLoader {
                     .load(uri)
                     .placeholder(R.drawable.ic_placeholder)
                     .error(R.drawable.ic_error)
-                    .transition(DrawableTransitionOptions.withCrossFade())
+//                    .transition(DrawableTransitionOptions.withCrossFade())
                     .centerCrop()
                     .into(img)
     }
@@ -26,7 +26,7 @@ class GlideLoader:IImageLoader {
                     .load(res)
                     .placeholder(R.drawable.ic_placeholder)
                     .error(R.drawable.ic_error)
-                    .transition(DrawableTransitionOptions.withCrossFade())
+//                    .transition(DrawableTransitionOptions.withCrossFade())
                     .centerCrop()
                     .into(img)
     }

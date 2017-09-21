@@ -1,8 +1,6 @@
 package com.modoutech.kotlin.base
 
-import android.app.Application
 import android.content.Context
-import com.hxw.frame.base.DaggerActivity
 import com.hxw.frame.base.delegate.AppDelegate
 import com.hxw.frame.base.delegate.AppLifecycle
 import com.modoutech.kotlin.di.DaggerAppComponent
@@ -16,7 +14,7 @@ import kotlin.properties.Delegates
 class MyApplication : DaggerApplication() {
 
     override fun applicationInjector(): AndroidInjector<out DaggerApplication> {
-       return DaggerAppComponent
+        return DaggerAppComponent
                 .builder()
                 .frameComponent(AppDelegate.FRAME_COMPONENT)
                 .build()
@@ -32,6 +30,7 @@ class MyApplication : DaggerApplication() {
     }
 
     override fun onCreate() {
+        //AppDelegate.FRAME_COMPONENT在onCreate中初始化,applicationInjector在super.onCreate()中就会可能调用到
         mAppDelegate.onCreate(this)
         super.onCreate()
 
