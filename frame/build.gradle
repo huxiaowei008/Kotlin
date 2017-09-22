@@ -69,8 +69,8 @@ dependencies {
     compile rootProject.ext.dependencies["rxandroid2"]
 
     //RxLifecycle https://github.com/trello/RxLifecycle/tree/2.x
-    compile rootProject.ext.dependencies["rxlifecycle2-components"]
     compile rootProject.ext.dependencies["rxlifecycle2-kotlin"]
+    compile rootProject.ext.dependencies["rxlifecycle2-android-lifecycle-kotlin"]
 
     //RxBinding https://github.com/JakeWharton/RxBinding
     compile rootProject.ext.dependencies["rxbinding2-kotlin"]

@@ -28,7 +28,13 @@ object AppManager {
     /**
      * 获得当前在前台的activity
      */
-    fun getCurrentActivity() = mCurrentActivity ?: if (!activityStack.empty()) {
+    fun getCurrentActivity() = mCurrentActivity
+
+    /**
+     * 获取位于栈顶的 activity,此方法不保证获取到的 acticity 正处于可见状态,即使 App 进入后台也会返回当前栈顶的 activity
+     * 因此基本不会出现 null 的情况,比较适合大部分的使用场景,如 startActivity,Glide 加载图片
+     */
+    fun getTopActivity() = if (!activityStack.empty()) {
         activityStack.lastElement()
     } else {
         null
@@ -71,13 +77,38 @@ object AppManager {
      * 让在前台的activity,打开下一个activity
      */
     fun startActivity(intent: Intent) {
-        if (mCurrentActivity == null) {
+        if (getTopActivity() == null) {
             //如果没有前台的activity就使用new_task模式启动activity
             intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK
             AppDelegate.instance.startActivity(intent)
 
         } else {
-            mCurrentActivity?.startActivity(intent)
+            getTopActivity()!!.startActivity(intent)
+        }
+    }
+
+    /**
+     * 关闭所有 activity
+     */
+    fun killAll() {
+        activityStack.forEach {
+            activityStack.remove(it)
+            it.finish()
+        }
+    }
+
+    /**
+     * 关闭所有 activity,排除指定的 activity
+     *
+     * @param excludeActivityClasses activity class
+     */
+    fun killAll(vararg excludeActivityClasses: Class<*>) {
+        val excludeList: List<Class<*>> = (excludeActivityClasses).asList()
+        activityStack.forEach {
+            if (!excludeList.contains(it.javaClass)) {
+                activityStack.remove(it)
+                it.finish()
+            }
         }
     }
 
@@ -86,9 +117,7 @@ object AppManager {
      */
     fun exitApp() {
         try {
-            activityStack.forEach {
-                it.finish()
-            }
+            killAll()
             activityStack.clear()
             //退出JVM(java虚拟机),释放所占内存资源,0表示正常退出(非0的都为异常退出)
             System.exit(0)
