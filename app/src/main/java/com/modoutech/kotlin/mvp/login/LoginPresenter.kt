@@ -2,7 +2,12 @@ package com.modoutech.kotlin.mvp.login
 
 import com.hxw.frame.di.scope.ActivityScope
 import com.hxw.frame.integration.RepositoryManager
+import com.hxw.frame.integration.lifecycle.ActivityLifecycleable
 import com.hxw.frame.utils.UIUtils
+import com.trello.rxlifecycle2.LifecycleProvider
+import com.trello.rxlifecycle2.android.ActivityEvent
+import com.trello.rxlifecycle2.kotlin.bindToLifecycle
+import io.reactivex.Observable
 import javax.inject.Inject
 
 /**
@@ -19,7 +24,10 @@ class LoginPresenter @Inject constructor(
     }
 
     override fun login() {
-        UIUtils.toast("成功")
+        Observable.just(0)
+                .bindToLifecycle(mView as ActivityLifecycleable)
+                .subscribe { UIUtils.toast("成功") }
+
     }
 
     override fun onDestroy() {
