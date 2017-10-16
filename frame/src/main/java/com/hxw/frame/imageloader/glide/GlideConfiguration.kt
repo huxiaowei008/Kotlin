@@ -29,10 +29,10 @@ class GlideConfiguration : AppGlideModule() {
         builder.setDiskCache {
             // Careful: the external cache directory doesn't enforce permissions
             //图片磁盘缓存文件最大值为100Mb
-            val IMAGE_DISK_CACHE_MAX_SIZE = 100 * 1024 * 1024
+            val maxSize = 100 * 1024 * 1024
             val cacheDirectory = File(AppDelegate.FRAME_COMPONENT.cacheFile(), "Glide")
             DiskLruCacheWrapper.get(FileUtils.makeDirs(cacheDirectory),
-                    IMAGE_DISK_CACHE_MAX_SIZE)
+                    maxSize)
         }
 
         val calculator = MemorySizeCalculator.Builder(context).build()
