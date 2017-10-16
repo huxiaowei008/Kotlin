@@ -10,7 +10,8 @@ import com.google.gson.stream.JsonWriter
 
 /**
  * gson中null的String转换为""的工具
- * Created by hxw on 2017/9/1.
+ * @author hxw
+ * @date 2017/9/1
  */
 class NullStringToEmptyFactory<T> : TypeAdapterFactory {
 

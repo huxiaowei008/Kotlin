@@ -5,7 +5,8 @@ import dagger.Binds
 import dagger.Module
 
 /**
- * Created by hxw on 2017/9/19.
+ * @author hxw
+ * @date 2017/9/19
  */
 @Module
 abstract class LoginModule {

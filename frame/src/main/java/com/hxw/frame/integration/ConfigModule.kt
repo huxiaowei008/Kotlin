@@ -8,7 +8,8 @@ import com.hxw.frame.di.module.GlobalConfigModule
 
 /**
  * 此接口可以给框架配置一些参数,需要实现类实现后,并在AndroidManifest中声明该实现类
- * Created by hxw on 2017/8/19.
+ * @author hxw
+ * @date 2017/8/19
  */
 interface ConfigModule {
 

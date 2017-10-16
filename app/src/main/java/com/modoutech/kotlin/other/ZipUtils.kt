@@ -10,7 +10,8 @@ import java.util.zip.Inflater
 
 /**
  * 压缩包工具
- * Created by hxw on 2017/8/18.
+ * @author hxw
+ * @date 2017/8/18
  */
 object ZipUtils {
 

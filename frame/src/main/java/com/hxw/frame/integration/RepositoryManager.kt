@@ -4,9 +4,9 @@ import retrofit2.Retrofit
 
 /**
  * 用来管理网络请求层,以及数据缓存层,以后可以添加数据库请求层
- * Created by hxw on 2017/8/30.
+ * @author hxw
+ * @date 2017/8/30
  */
-
 class RepositoryManager(private val mRetrofit: Retrofit) {
     private val mRetrofitService = HashMap<String, Any>()
 

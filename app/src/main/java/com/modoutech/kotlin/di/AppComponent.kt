@@ -8,7 +8,8 @@ import dagger.android.AndroidInjector
 import dagger.android.support.AndroidSupportInjectionModule
 
 /**
- * Created by hxw on 2017/9/20.
+ * @author hxw
+ * @date 2017/9/19
  */
 @AppScope
 @Component(dependencies = arrayOf(FrameComponent::class),

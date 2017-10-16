@@ -18,7 +18,8 @@ import javax.inject.Singleton
 
 /**
  * 三方客户端Module
- * Created by hxw on 2017/8/18.
+ * @author hxw
+ * @date 2017/8/18
  */
 @Module
 class ClientModule {

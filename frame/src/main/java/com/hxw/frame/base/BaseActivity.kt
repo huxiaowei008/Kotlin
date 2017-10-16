@@ -15,7 +15,8 @@ import io.reactivex.subjects.Subject
 
 /**
  * activity基类
- * Created by hxw on 2017/8/29.
+ * @author hxw
+ * @date 2017/8/29
  */
 abstract class BaseActivity : AppCompatActivity(), IActivity, ActivityLifecycleable {
     protected val TAG = this.javaClass.simpleName!!

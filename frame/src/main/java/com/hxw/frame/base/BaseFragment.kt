@@ -17,7 +17,8 @@ import io.reactivex.subjects.Subject
 
 /**
  * fragment基类
- * Created by hxw on 2017/8/30.
+ * @author hxw
+ * @date 2017/8/30
  */
 abstract class BaseFragment : Fragment(), IFragment, FragmentLifecycleable {
     protected val TAG = this.javaClass.simpleName!!

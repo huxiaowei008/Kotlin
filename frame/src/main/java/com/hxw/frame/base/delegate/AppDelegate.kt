@@ -13,7 +13,8 @@ import com.hxw.frame.integration.ManifestParser
 
 /**
  * application的代理
- * Created by hxw on 2017/8/28.
+ * @author hxw
+ * @date 2017/8/28
  */
 class AppDelegate(context: Context) : AppLifecycle {
     companion object {

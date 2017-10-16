@@ -6,7 +6,8 @@ import java.util.*
 
 /**
  * 时间相关工具类
- * Created by hxw on 2017/9/1.
+ * @author hxw
+ * @date 2017/9/1
  */
 object DateUtils {
     /**

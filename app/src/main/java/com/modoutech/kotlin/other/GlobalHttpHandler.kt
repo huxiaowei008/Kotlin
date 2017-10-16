@@ -6,7 +6,8 @@ import okhttp3.Response
 
 /**
  * http拦截处理
- * Created by hxw on 2017/8/18.
+ * @author hxw
+ * @date 2017/8/18
  */
 interface GlobalHttpHandler {
     fun onHttpResultResponse(httpResult: String, chain: Interceptor.Chain, response: Response): Response

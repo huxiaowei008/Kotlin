@@ -11,7 +11,8 @@ import kotlinx.android.synthetic.main.activity_login.*
 import javax.inject.Inject
 
 /**
- * Created by hxw on 2017/9/19.
+ * @author hxw
+ * @date 2017/9/19
  */
 class LoginActivity : DaggerActivity(), LoginContract.View {
 

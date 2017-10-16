@@ -7,7 +7,8 @@ import javax.inject.Singleton
 
 /**
  * 应用Module
- * Created by hxw on 2017/8/18.
+ * @author hxw
+ * @date 2017/8/18
  */
 @Module
 class AppModule(private val application: Application) {

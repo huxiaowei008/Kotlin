@@ -18,7 +18,8 @@ import java.io.InputStream
 
 /**
  * glide的配置类
- * Created by hxw on 2017/9/15.
+ * @author hxw
+ * @date 2017/9/25
  */
 @GlideModule
 class GlideConfiguration : AppGlideModule() {

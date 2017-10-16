@@ -4,7 +4,8 @@ import com.hxw.frame.mvp.IPresenter
 import com.hxw.frame.mvp.IView
 
 /**
- * Created by hxw on 2017/9/19.
+ * @author hxw
+ * @date 2017/9/19
  */
 interface LoginContract {
     interface View : IView<Presenter> {

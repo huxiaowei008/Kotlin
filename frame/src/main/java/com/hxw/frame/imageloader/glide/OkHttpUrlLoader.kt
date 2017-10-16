@@ -11,7 +11,8 @@ import java.io.InputStream
 
 /**
  * A simple model loader for fetching media over http/https using OkHttp.
- * Created by hxw on 2017/9/15.
+ * @author hxw
+ * @date 2017/9/15
  */
 class OkHttpUrlLoader(private val client: Call.Factory) : ModelLoader<GlideUrl, InputStream> {
 

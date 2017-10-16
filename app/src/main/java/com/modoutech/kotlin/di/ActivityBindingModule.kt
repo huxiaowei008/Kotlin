@@ -8,7 +8,8 @@ import dagger.android.ContributesAndroidInjector
 
 /**
  * 绑定对应activity
- * Created by hxw on 2017/9/20.
+ * @author hxw
+ * @date 2017/9/20
  */
 @Module
 abstract class ActivityBindingModule {

@@ -22,7 +22,8 @@ import java.net.SocketTimeoutException
 import java.net.UnknownHostException
 
 /**
- * Created by hxw on 2017/8/29.
+ * @author hxw
+ * @date 2017/8/29
  */
 class GlobalConfiguration : ConfigModule {
     override fun applyOptions(context: Context, builder: GlobalConfigModule.Builder) {

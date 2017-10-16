@@ -9,7 +9,8 @@ import io.reactivex.Observable
 import javax.inject.Inject
 
 /**
- * Created by hxw on 2017/9/19.
+ * @author hxw
+ * @date 2017/9/19
  */
 @ActivityScope
 class LoginPresenter @Inject constructor(

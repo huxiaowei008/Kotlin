@@ -17,7 +17,8 @@ import java.io.InputStream
 
 /**
  * Fetches an {@link InputStream} using the okhttp3library.
- * Created by hxw on 2017/9/15.
+ * @author hxw
+ * @date 2017/9/15
  */
 class OkHttpStreamFetcher(private val client: Call.Factory, private val url: GlideUrl) : DataFetcher<InputStream> {
 

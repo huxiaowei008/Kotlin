@@ -4,7 +4,8 @@ import android.os.Bundle
 
 /**
  * activity基础接口
- * Created by hxw on 2017/8/29.
+ * @author hxw
+ * @date 2017/8/29
  */
 interface IActivity {
 

@@ -1,7 +1,8 @@
 package com.hxw.frame.mvp
 
 /**
- * Created by hxw on 2017/9/15.
+ * @author hxw
+ * @date 2017/9/15
  */
 interface IView<P> {
 

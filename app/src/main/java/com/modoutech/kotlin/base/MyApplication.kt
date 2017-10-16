@@ -9,7 +9,8 @@ import dagger.android.support.DaggerApplication
 import kotlin.properties.Delegates
 
 /**
- * Created by hxw on 2017/9/20.
+ * @author hxw
+ * @date 2017/9/20
  */
 class MyApplication : DaggerApplication() {
 

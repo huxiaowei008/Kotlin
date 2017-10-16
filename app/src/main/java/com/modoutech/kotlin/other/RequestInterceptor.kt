@@ -11,7 +11,8 @@ import java.util.concurrent.TimeUnit
 
 /**
  * 请求拦截器,主要打印返回结果
- * Created by hxw on 2017/8/18.
+ * @author hxw
+ * @date 2017/8/18
  */
 class RequestInterceptor (private val handler: GlobalHttpHandler?) : Interceptor {
 

@@ -6,7 +6,8 @@ import timber.log.Timber
 
 /**
  * Manifest解析工具
- * Created by hxw on 2017/8/19.
+ * @author hxw
+ * @date 2017/8/19
  */
 class ManifestParser(private val context: Context) {
     private val TAG = "ManifestParser"

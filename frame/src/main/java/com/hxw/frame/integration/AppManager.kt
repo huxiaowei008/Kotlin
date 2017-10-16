@@ -7,7 +7,8 @@ import java.util.*
 
 /**
  * APP的活动管理类
- * Created by hxw on 2017/8/29.
+ * @author hxw
+ * @date 2017/8/29
  */
 object AppManager {
     //当前在前台的activity

@@ -19,7 +19,8 @@ import timber.log.Timber
 
 /**
  * activity的生命周期回调监听
- * Created by hxw on 2017/8/29.
+ * @author hxw
+ * @date 2017/8/29
  */
 class ActivityLifecycle(private val modules: MutableList<ConfigModule>,
                         private val mApplication: Application) : Application.ActivityLifecycleCallbacks {

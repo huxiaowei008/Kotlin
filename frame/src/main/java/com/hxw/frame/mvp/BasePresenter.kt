@@ -6,7 +6,8 @@ import io.reactivex.disposables.Disposable
 
 /**
  * presenter基类
- * Created by hxw on 2017/9/16.
+ * @author hxw
+ * @date 2017/9/16
  */
 open class BasePresenter<V> : IPresenter<V> {
 

@@ -11,7 +11,8 @@ import javax.inject.Inject
 
 /**
  * 使用注入的fragment基类
- * Created by hxw on 2017/9/20.
+ * @author hxw
+ * @date 2017/9/20
  */
 @Beta
 abstract class DaggerFragment : BaseFragment(), HasSupportFragmentInjector {

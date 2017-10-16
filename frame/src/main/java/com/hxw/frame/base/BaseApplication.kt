@@ -8,7 +8,8 @@ import kotlin.properties.Delegates
 
 /**
  * 基类application,可以实现自己的application,把这里的代码复制过去就好
- * Created by hxw on 2017/8/19.
+ * @author hxw
+ * @date 2017/8/19
  */
 class BaseApplication : Application() {
 

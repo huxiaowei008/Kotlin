@@ -17,7 +17,8 @@ import javax.inject.Singleton
 
 /**
  * 公用组件
- * Created by hxw on 2017/8/18.
+ * @author hxw
+ * @date 2017/8/18
  */
 @Singleton
 @Component(modules = arrayOf(AppModule::class, ClientModule::class, GlobalConfigModule::class))

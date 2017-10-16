@@ -4,7 +4,8 @@ import android.support.annotation.IntDef
 
 /**
  * 存储相关常量
- * Created by hxw on 2017/9/1.
+ * @author hxw
+ * @date 2017/9/1
  */
 object MemoryConstants {
     /**

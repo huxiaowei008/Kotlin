@@ -7,7 +7,8 @@ import android.widget.ImageView
 
 /**
  * 图片加载接口
- * Created by hxw on 2017/8/18.
+ * @author hxw
+ * @date 2017/8/18
  */
 interface IImageLoader {
     /**
