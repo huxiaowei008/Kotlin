@@ -15,7 +15,6 @@ import com.google.gson.stream.JsonWriter
  */
 class NullStringToEmptyFactory<T> : TypeAdapterFactory {
 
-    @Override
     @SuppressWarnings("unchecked")
     override fun <T : Any?> create(gson: Gson?, type: TypeToken<T>?): TypeAdapter<T>? {
         val rawType = type?.rawType
