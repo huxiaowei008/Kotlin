@@ -1,13 +1,16 @@
 package com.modoutech.kotlin.base
 
+import android.app.Activity
 import android.app.Application
 import android.content.Context
 import android.net.ParseException
+import android.os.Bundle
 import android.support.v4.app.FragmentManager
 import com.google.gson.GsonBuilder
 import com.google.gson.JsonIOException
 import com.google.gson.JsonParseException
 import com.hxw.frame.base.delegate.AppLifecycle
+import com.hxw.frame.base.delegate.BaseActivityLife
 import com.hxw.frame.di.module.ClientModule
 import com.hxw.frame.di.module.GlobalConfigModule
 import com.hxw.frame.http.OnResponseErrorListener
@@ -71,7 +74,11 @@ class GlobalConfiguration : ConfigModule {
     }
 
     override fun injectActivityLifecycle(context: Context, lifecycle: MutableList<Application.ActivityLifecycleCallbacks>) {
-
+        lifecycle.add(object : BaseActivityLife() {
+            override fun onActivityCreated(activity: Activity?, savedInstanceState: Bundle?) {
+                super.onActivityCreated(activity, savedInstanceState)
+            }
+        })
     }
 
     override fun injectFragmentLifecycle(context: Context, lifecycle: MutableList<FragmentManager.FragmentLifecycleCallbacks>) {
