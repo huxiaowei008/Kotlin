@@ -32,7 +32,7 @@ class ActivityLifecycle(private val modules: MutableList<ConfigModule>,
         FragmentLifecycle()
     }
 
-    override fun onActivityCreated(activity: Activity?, savedInstanceState: Bundle?) {
+    override fun onActivityCreated(activity: Activity, savedInstanceState: Bundle?) {
         Timber.w("$activity - onActivityCreated")
         AppManager.addActivity(activity)
         if (activity is ActivityLifecycleable) {
@@ -57,14 +57,14 @@ class ActivityLifecycle(private val modules: MutableList<ConfigModule>,
 
     }
 
-    override fun onActivityStarted(activity: Activity?) {
+    override fun onActivityStarted(activity: Activity) {
         Timber.w("$activity - onActivityStarted")
         if (activity is ActivityLifecycleable) {
             activity.lifecycleSubject().onNext(ActivityEvent.START)
         }
     }
 
-    override fun onActivityResumed(activity: Activity?) {
+    override fun onActivityResumed(activity: Activity) {
         Timber.w("$activity - onActivityResumed")
         AppManager.setCurrentActivity(activity)
         if (activity is ActivityLifecycleable) {
@@ -72,14 +72,14 @@ class ActivityLifecycle(private val modules: MutableList<ConfigModule>,
         }
     }
 
-    override fun onActivityPaused(activity: Activity?) {
+    override fun onActivityPaused(activity: Activity) {
         Timber.w("$activity - onActivityPaused")
         if (activity is ActivityLifecycleable) {
             activity.lifecycleSubject().onNext(ActivityEvent.PAUSE)
         }
     }
 
-    override fun onActivityStopped(activity: Activity?) {
+    override fun onActivityStopped(activity: Activity) {
         Timber.w("$activity - onActivityStopped")
         if (AppManager.getCurrentActivity() == activity) {
             AppManager.setCurrentActivity(null)
@@ -89,11 +89,11 @@ class ActivityLifecycle(private val modules: MutableList<ConfigModule>,
         }
     }
 
-    override fun onActivitySaveInstanceState(activity: Activity?, outState: Bundle?) {
+    override fun onActivitySaveInstanceState(activity: Activity, outState: Bundle?) {
         Timber.w("$activity - onActivitySaveInstanceState")
     }
 
-    override fun onActivityDestroyed(activity: Activity?) {
+    override fun onActivityDestroyed(activity: Activity) {
         Timber.w("$activity - onActivityDestroyed")
         AppManager.removeActivity(activity)
         if (activity is ActivityLifecycleable) {
@@ -102,12 +102,12 @@ class ActivityLifecycle(private val modules: MutableList<ConfigModule>,
     }
 
     class FragmentLifecycle : FragmentManager.FragmentLifecycleCallbacks() {
-        override fun onFragmentPreAttached(fm: FragmentManager?, f: Fragment?, context: Context?) {
+        override fun onFragmentPreAttached(fm: FragmentManager, f: Fragment, context: Context) {
             super.onFragmentPreAttached(fm, f, context)
             Timber.w("$f - onFragmentPreAttached")
         }
 
-        override fun onFragmentAttached(fm: FragmentManager?, f: Fragment?, context: Context?) {
+        override fun onFragmentAttached(fm: FragmentManager, f: Fragment, context: Context) {
             super.onFragmentAttached(fm, f, context)
             Timber.w("$f - onFragmentAttached")
             if (f is FragmentLifecycleable) {
@@ -115,7 +115,7 @@ class ActivityLifecycle(private val modules: MutableList<ConfigModule>,
             }
         }
 
-        override fun onFragmentCreated(fm: FragmentManager?, f: Fragment?, savedInstanceState: Bundle?) {
+        override fun onFragmentCreated(fm: FragmentManager, f: Fragment, savedInstanceState: Bundle?) {
             super.onFragmentCreated(fm, f, savedInstanceState)
             Timber.w("$f - onFragmentCreated")
             if (f is FragmentLifecycleable) {
@@ -123,12 +123,12 @@ class ActivityLifecycle(private val modules: MutableList<ConfigModule>,
             }
         }
 
-        override fun onFragmentActivityCreated(fm: FragmentManager?, f: Fragment?, savedInstanceState: Bundle?) {
+        override fun onFragmentActivityCreated(fm: FragmentManager, f: Fragment, savedInstanceState: Bundle?) {
             super.onFragmentActivityCreated(fm, f, savedInstanceState)
             Timber.w("$f - onFragmentActivityCreated")
         }
 
-        override fun onFragmentViewCreated(fm: FragmentManager?, f: Fragment?, v: View?, savedInstanceState: Bundle?) {
+        override fun onFragmentViewCreated(fm: FragmentManager, f: Fragment, v: View?, savedInstanceState: Bundle?) {
             super.onFragmentViewCreated(fm, f, v, savedInstanceState)
             Timber.w("$f - onFragmentViewCreated")
             if (f is FragmentLifecycleable) {
@@ -136,7 +136,7 @@ class ActivityLifecycle(private val modules: MutableList<ConfigModule>,
             }
         }
 
-        override fun onFragmentStarted(fm: FragmentManager?, f: Fragment?) {
+        override fun onFragmentStarted(fm: FragmentManager, f: Fragment) {
             super.onFragmentStarted(fm, f)
             Timber.w("$f - onFragmentStarted")
             if (f is FragmentLifecycleable) {
@@ -144,7 +144,7 @@ class ActivityLifecycle(private val modules: MutableList<ConfigModule>,
             }
         }
 
-        override fun onFragmentResumed(fm: FragmentManager?, f: Fragment?) {
+        override fun onFragmentResumed(fm: FragmentManager, f: Fragment) {
             super.onFragmentResumed(fm, f)
             Timber.w("$f - onFragmentResumed")
             if (f is FragmentLifecycleable) {
@@ -152,7 +152,7 @@ class ActivityLifecycle(private val modules: MutableList<ConfigModule>,
             }
         }
 
-        override fun onFragmentPaused(fm: FragmentManager?, f: Fragment?) {
+        override fun onFragmentPaused(fm: FragmentManager, f: Fragment) {
             super.onFragmentPaused(fm, f)
             Timber.w("$f - onFragmentPaused")
             if (f is FragmentLifecycleable) {
@@ -160,7 +160,7 @@ class ActivityLifecycle(private val modules: MutableList<ConfigModule>,
             }
         }
 
-        override fun onFragmentStopped(fm: FragmentManager?, f: Fragment?) {
+        override fun onFragmentStopped(fm: FragmentManager, f: Fragment) {
             super.onFragmentStopped(fm, f)
             Timber.w("$f - onFragmentStopped")
             if (f is FragmentLifecycleable) {
@@ -168,12 +168,12 @@ class ActivityLifecycle(private val modules: MutableList<ConfigModule>,
             }
         }
 
-        override fun onFragmentSaveInstanceState(fm: FragmentManager?, f: Fragment?, outState: Bundle?) {
+        override fun onFragmentSaveInstanceState(fm: FragmentManager, f: Fragment, outState: Bundle?) {
             super.onFragmentSaveInstanceState(fm, f, outState)
             Timber.w("$f - onFragmentSaveInstanceState")
         }
 
-        override fun onFragmentViewDestroyed(fm: FragmentManager?, f: Fragment?) {
+        override fun onFragmentViewDestroyed(fm: FragmentManager, f: Fragment) {
             super.onFragmentViewDestroyed(fm, f)
             Timber.w("$f - onFragmentViewDestroyed")
             if (f is FragmentLifecycleable) {
@@ -181,7 +181,7 @@ class ActivityLifecycle(private val modules: MutableList<ConfigModule>,
             }
         }
 
-        override fun onFragmentDestroyed(fm: FragmentManager?, f: Fragment?) {
+        override fun onFragmentDestroyed(fm: FragmentManager, f: Fragment) {
             super.onFragmentDestroyed(fm, f)
             Timber.w("$f - onFragmentDestroyed")
             if (f is FragmentLifecycleable) {
@@ -189,7 +189,7 @@ class ActivityLifecycle(private val modules: MutableList<ConfigModule>,
             }
         }
 
-        override fun onFragmentDetached(fm: FragmentManager?, f: Fragment?) {
+        override fun onFragmentDetached(fm: FragmentManager, f: Fragment) {
             super.onFragmentDetached(fm, f)
             Timber.w("$f - onFragmentDetached")
             if (f is FragmentLifecycleable) {
