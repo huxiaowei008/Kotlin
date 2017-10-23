@@ -1,6 +1,7 @@
 package com.hxw.frame.utils
 
 import android.app.Activity
+import android.content.Context
 import android.graphics.Color
 import android.os.Build
 import android.support.design.widget.Snackbar
@@ -44,5 +45,27 @@ object UIUtils {
             activity.window.setFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS,
                     WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS)
         }
+    }
+
+    /**
+     * dp转px
+     *
+     * @param dpValue dp值
+     * @return px值
+     */
+    fun dpToPx(context: Context, dpValue: Float): Int {
+        val scale = context.resources.displayMetrics.scaledDensity
+        return (dpValue * scale + 0.5f).toInt()
+    }
+
+    /**
+     * sp转px
+     *
+     * @param spValue sp值
+     * @return px值
+     */
+    fun spToPx(context: Context, spValue:Float):Int{
+        val scale=context.resources.displayMetrics.scaledDensity
+        return (spValue * scale + 0.5f).toInt()
     }
 }
