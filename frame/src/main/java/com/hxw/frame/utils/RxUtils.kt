@@ -1,4 +1,4 @@
-package com.hxw.frame.utils.constant
+package com.hxw.frame.utils
 
 /**
  * Rx相关工具类
