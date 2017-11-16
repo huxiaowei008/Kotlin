@@ -1,6 +1,7 @@
 package com.hxw.frame.di
 
 import android.app.Application
+import android.content.SharedPreferences
 import com.google.gson.Gson
 import com.hxw.frame.base.delegate.AppDelegate
 import com.hxw.frame.di.module.AppModule
@@ -42,4 +43,6 @@ interface FrameComponent {
 
     fun errorHandler(): ErrorHandler
 
+    //存放用户数据的SharedPreferences
+    fun userSharedPreferences(): SharedPreferences
 }
