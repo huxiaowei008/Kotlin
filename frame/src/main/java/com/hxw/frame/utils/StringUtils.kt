@@ -6,6 +6,8 @@ import org.json.JSONException
 import org.json.JSONObject
 import java.io.StringReader
 import java.io.StringWriter
+import java.net.MalformedURLException
+import java.net.URL
 import javax.xml.transform.OutputKeys
 import javax.xml.transform.TransformerException
 import javax.xml.transform.TransformerFactory
@@ -67,4 +69,35 @@ object StringUtils {
             e.cause?.message + LINE_SEPARATOR + xml
         }
     }
+
+    /**
+     * 解析url的参数以map返回
+     */
+    fun urlRequestFormat(urlString: String): Map<String, String> =
+            try {
+                val mapRequest = hashMapOf<String, String>()
+                val url = URL(urlString)
+                val query = url.query
+                val arrSplit = query.split("&")
+
+                arrSplit
+                        .asSequence()
+                        .map {
+                            //解析出键值
+                            it.split("=")
+                        }
+                        .forEach {
+                            if (!it[0].isNullOrEmpty() && !it[1].isNullOrEmpty()) {
+                                mapRequest.put(it[0], it[1])
+                            } else if (!it[0].isNullOrEmpty()) {
+                                mapRequest.put(it[0], "")
+                            }
+                        }
+
+                mapRequest
+            } catch (e: MalformedURLException) {
+                e.printStackTrace()
+                hashMapOf()
+            }
+
 }

@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.support.v7.content.res.AppCompatResources
 import com.hxw.frame.base.DaggerActivity
 import com.hxw.frame.imageloader.ImageLoader
+import com.hxw.frame.utils.StringUtils
 import com.jakewharton.rxbinding2.view.RxView
 import com.modoutech.kotlin.R
 import com.trello.rxlifecycle2.kotlin.bindToLifecycle
@@ -28,8 +29,10 @@ class LoginActivity : DaggerActivity(), LoginContract.View {
         imageLoader.displayRes(img_logo, R.mipmap.ic_launcher)
         RxView.clicks(btn_login)
                 .bindToLifecycle(this)//rxlifecycle的使用
-                .subscribe { mPresenter.login() }
-
+                .subscribe {
+                    mPresenter.login()
+                }
+        val map=StringUtils.urlRequestFormat("http://172.16.8.94:8080/GetNearByArea?token=195184551&lat=27.974277&lon=120.7336")
     }
 
     override fun showMessage(message: String) {
