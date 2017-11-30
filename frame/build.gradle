@@ -34,56 +34,56 @@ dependencies {
     })
     testImplementation 'junit:junit:4.12'
     //Kotlin
-    implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
-    compile rootProject.ext.dependencies["appcompat"]
-    compile rootProject.ext.dependencies["design"]
-    compile rootProject.ext.dependencies["support-v4"]
-    compile rootProject.ext.dependencies["cardview-v7"]
-    compile rootProject.ext.dependencies["recyclerview-v7"]
-    compile rootProject.ext.dependencies["support-annotations"]
-    compile rootProject.ext.dependencies["support-vector-drawable"]
+    api "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
+    api rootProject.ext.dependencies["appcompat"]
+    api rootProject.ext.dependencies["design"]
+    api rootProject.ext.dependencies["support-v4"]
+    api rootProject.ext.dependencies["cardview-v7"]
+    api rootProject.ext.dependencies["recyclerview-v7"]
+    api rootProject.ext.dependencies["support-annotations"]
+    api rootProject.ext.dependencies["support-vector-drawable"]
     compileOnly rootProject.ext.dependencies["javax.annotation"]
 
     //retrofit https://github.com/square/retrofit
-    compile rootProject.ext.dependencies["retrofit"]
-    compile rootProject.ext.dependencies["converter-gson"]
-    compile rootProject.ext.dependencies["adapter-rxjava2"]
+    api rootProject.ext.dependencies["retrofit"]
+    api rootProject.ext.dependencies["converter-gson"]
+    api rootProject.ext.dependencies["adapter-rxjava2"]
 
     //Gson https://github.com/google/gson
-    compile rootProject.ext.dependencies["gson"]
+    api rootProject.ext.dependencies["gson"]
 
     //okHttp https://github.com/square/okhttp
-    compile rootProject.ext.dependencies["okhttp"]
+    api rootProject.ext.dependencies["okhttp"]
 
     //timber https://github.com/JakeWharton/timber
-    compile rootProject.ext.dependencies["timber"]
+    api rootProject.ext.dependencies["timber"]
 
     //glide图片加载 https://github.com/bumptech/glide
-    compile rootProject.ext.dependencies["glide"]
+    api rootProject.ext.dependencies["glide"]
     kapt rootProject.ext.dependencies["glide.compiler"]
 
     //RxKotlin https://github.com/ReactiveX/RxKotlin
-    compile rootProject.ext.dependencies["rxkotlin2"]
+    api rootProject.ext.dependencies["rxkotlin2"]
 
     //RxAndroid https://github.com/ReactiveX/RxAndroid/tree/2.x
-    compile rootProject.ext.dependencies["rxandroid2"]
+    api rootProject.ext.dependencies["rxandroid2"]
 
     //RxLifecycle https://github.com/trello/RxLifecycle/tree/2.x
-    compile rootProject.ext.dependencies["rxlifecycle2-kotlin"]
-    compile rootProject.ext.dependencies["rxlifecycle2-android-lifecycle-kotlin"]
+    api rootProject.ext.dependencies["rxlifecycle2-kotlin"]
+    api rootProject.ext.dependencies["rxlifecycle2-android-lifecycle-kotlin"]
 
     //RxBinding https://github.com/JakeWharton/RxBinding
-    compile rootProject.ext.dependencies["rxbinding2-kotlin"]
-    compile rootProject.ext.dependencies["rxbinding2-support-v4-kotlin"]
-    compile rootProject.ext.dependencies["rxbinding2-appcompat-v7-kotlin"]
-    compile rootProject.ext.dependencies["rxbinding2-design-kotlin"]
-    compile rootProject.ext.dependencies["rxbinding2-recyclerview-v7-kotlin"]
+    api rootProject.ext.dependencies["rxbinding2-kotlin"]
+    api rootProject.ext.dependencies["rxbinding2-support-v4-kotlin"]
+    api rootProject.ext.dependencies["rxbinding2-appcompat-v7-kotlin"]
+    api rootProject.ext.dependencies["rxbinding2-design-kotlin"]
+    api rootProject.ext.dependencies["rxbinding2-recyclerview-v7-kotlin"]
 
     //dagger2 https://github.com/google/dagger
-    compile rootProject.ext.dependencies["dagger"]
+    api rootProject.ext.dependencies["dagger"]
     kapt rootProject.ext.dependencies["dagger-compiler"]
-    compile rootProject.ext.dependencies["dagger-android"]
-    compile rootProject.ext.dependencies["dagger-android-support"]
+    api rootProject.ext.dependencies["dagger-android"]
+    api rootProject.ext.dependencies["dagger-android-support"]
     kapt rootProject.ext.dependencies["dagger-android-processor"]
 }
 
