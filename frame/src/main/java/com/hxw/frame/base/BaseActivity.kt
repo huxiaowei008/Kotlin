@@ -1,24 +1,24 @@
 package com.hxw.frame.base
 
 import android.os.Bundle
+import android.support.annotation.CallSuper
 import android.support.annotation.CheckResult
 import android.support.annotation.NonNull
 import android.support.v7.app.AppCompatActivity
-import com.hxw.frame.integration.lifecycle.ActivityLifecycleable
+import com.trello.rxlifecycle2.LifecycleProvider
 import com.trello.rxlifecycle2.LifecycleTransformer
 import com.trello.rxlifecycle2.RxLifecycle
 import com.trello.rxlifecycle2.android.ActivityEvent
 import com.trello.rxlifecycle2.android.RxLifecycleAndroid
 import io.reactivex.Observable
 import io.reactivex.subjects.BehaviorSubject
-import io.reactivex.subjects.Subject
 
 /**
  * activity基类
  * @author hxw
  * @date 2017/8/29
  */
-abstract class BaseActivity : AppCompatActivity(), IActivity, ActivityLifecycleable {
+abstract class BaseActivity : AppCompatActivity(), IActivity, LifecycleProvider<ActivityEvent> {
     protected val TAG = this.javaClass.simpleName!!
     private val lifecycleSubject = BehaviorSubject.create<ActivityEvent>()
 
@@ -35,17 +35,45 @@ abstract class BaseActivity : AppCompatActivity(), IActivity, ActivityLifecyclea
     override final fun <T : Any?> bindToLifecycle(): LifecycleTransformer<T> =
             RxLifecycleAndroid.bindActivity(lifecycleSubject)
 
-    @CheckResult
-    override final fun lifecycleSubject(): Subject<ActivityEvent> = lifecycleSubject
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
+        lifecycleSubject.onNext(ActivityEvent.CREATE)
         if (getLayoutId() != 0) {
             setContentView(getLayoutId())
         }
 
         init(savedInstanceState)
+    }
+
+    @CallSuper
+    override fun onStart() {
+        super.onStart()
+        lifecycleSubject.onNext(ActivityEvent.START)
+    }
+
+    @CallSuper
+    override fun onResume() {
+        super.onResume()
+        lifecycleSubject.onNext(ActivityEvent.RESUME)
+    }
+
+    @CallSuper
+    override fun onPause() {
+        lifecycleSubject.onNext(ActivityEvent.PAUSE)
+        super.onPause()
+
+    }
+
+    @CallSuper
+    override fun onStop() {
+        lifecycleSubject.onNext(ActivityEvent.STOP)
+        super.onStop()
+    }
+
+    @CallSuper
+    override fun onDestroy() {
+        lifecycleSubject.onNext(ActivityEvent.DESTROY)
+        super.onDestroy()
     }
 
     override fun useFragment(): Boolean = false

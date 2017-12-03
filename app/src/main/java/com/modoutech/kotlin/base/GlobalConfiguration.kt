@@ -75,9 +75,9 @@ class GlobalConfiguration : ConfigModule {
 
     override fun injectActivityLifecycle(context: Context, lifecycle: MutableList<Application.ActivityLifecycleCallbacks>) {
         lifecycle.add(object : BaseActivityLife() {
-            override fun onActivityCreated(activity: Activity?, savedInstanceState: Bundle?) {
+            override fun onActivityCreated(activity: Activity, savedInstanceState: Bundle?) {
                 super.onActivityCreated(activity, savedInstanceState)
-                UIUtils.noStatusBar(activity!!)
+                UIUtils.noStatusBar(activity)
             }
         })
     }
