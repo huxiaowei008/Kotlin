@@ -100,4 +100,19 @@ object StringUtils {
                 hashMapOf()
             }
 
+    /**
+     * String数组变String,用|隔开
+     */
+    fun arrayStringToString(array: ArrayList<String>): String {
+        val regularEx = "|"
+        var str = ""
+        for ((index, value) in array.withIndex()) {
+            str += value
+            if (index != array.lastIndex) {
+                str += regularEx
+            }
+        }
+        return str
+    }
+
 }
