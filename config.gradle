@@ -70,7 +70,9 @@ ext {
             //Gson https://github.com/google/gson
             "gson"                                 : 'com.google.code.gson:gson:2.8.1',
             //okHttp https://github.com/square/okhttp
-            "okhttp"                               : 'com.squareup.okhttp3:okhttp:3.8.1',
+            "okhttp"                               : 'com.squareup.okhttp3:okhttp:3.9.1',
+            //这在okhttp主页下的okhttp-logging-interceptor包中
+            "okhttp-interceptor"                   : 'com.squareup.okhttp3:logging-interceptor:3.9.1',
             //timber https://github.com/JakeWharton/timber
             "timber"                               : 'com.jakewharton.timber:timber:4.5.1',
             //glide图片加载 https://github.com/bumptech/glide
