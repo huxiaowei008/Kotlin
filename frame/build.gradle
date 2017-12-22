@@ -54,13 +54,27 @@ dependencies {
 
     //okHttp https://github.com/square/okhttp
     api rootProject.ext.dependencies["okhttp"]
+    api rootProject.ext.dependencies["okhttp-interceptor"]
 
     //timber https://github.com/JakeWharton/timber
     api rootProject.ext.dependencies["timber"]
 
     //glide图片加载 https://github.com/bumptech/glide
     api rootProject.ext.dependencies["glide"]
+    api rootProject.ext.dependencies["glide.okhttp3"]
     kapt rootProject.ext.dependencies["glide.compiler"]
+
+//    示例代码：
+//    为了更好地控制，你也可以从 okhttp-integration 库中排除过渡依赖：
+//
+//    implementation (com.github.bumptech.glide:okhttp-integration:4.4.0) {
+//        exclude group: com.squareup.okhttp3, module: okhttp
+//    }
+//    或你可以简单地排除所有 okhttp-integration 库的所有过渡依赖：
+//
+//    implementation (com.github.bumptech.glide:okhttp-integration:4.4.0) {
+//        transitive = false
+//    }
 
     //RxKotlin https://github.com/ReactiveX/RxKotlin
     api rootProject.ext.dependencies["rxkotlin2"]

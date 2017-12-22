@@ -239,7 +239,7 @@ object DateUtils {
      * @param date Date类型时间
      * @return 星期
      */
-    fun getWeek(date: Date) = SimpleDateFormat("EEE", Locale.getDefault()).format(date)
+    fun getWeek(date: Date) = SimpleDateFormat("EEEE", Locale.getDefault()).format(date)
 
     /**
      * 获取月份中的第几周

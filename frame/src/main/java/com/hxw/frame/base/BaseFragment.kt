@@ -14,7 +14,6 @@ import com.trello.rxlifecycle2.android.FragmentEvent
 import com.trello.rxlifecycle2.android.RxLifecycleAndroid
 import io.reactivex.Observable
 import io.reactivex.subjects.BehaviorSubject
-import io.reactivex.subjects.Subject
 
 /**
  * fragment基类
@@ -46,8 +45,8 @@ abstract class BaseFragment : Fragment(), IFragment, LifecycleProvider<FragmentE
         lifecycleSubject.onNext(FragmentEvent.CREATE)
     }
 
-    override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?, savedInstanceState: Bundle?): View? =
-            inflater?.inflate(getLayoutId(), container, false)
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View?
+            = inflater.inflate(getLayoutId(), container, false)
 
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
