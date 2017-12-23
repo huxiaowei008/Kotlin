@@ -3,7 +3,6 @@ package com.hxw.frame.di
 import android.app.Application
 import android.content.SharedPreferences
 import com.google.gson.Gson
-import com.hxw.frame.base.delegate.AppDelegate
 import com.hxw.frame.di.module.AppModule
 import com.hxw.frame.di.module.ClientModule
 import com.hxw.frame.di.module.GlobalConfigModule

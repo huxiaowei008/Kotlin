@@ -19,7 +19,7 @@ class ManifestParser(private val context: Context) {
             val appInfo = context.packageManager
                     .getApplicationInfo(context.packageName, PackageManager.GET_META_DATA)
             if (appInfo.metaData != null) {
-                Timber.tag(TAG).v("Got app info metadata: " + appInfo.metaData)
+                Timber.tag(TAG).v("Got app info metadata: ${appInfo.metaData}")
                 for (key: String in appInfo.metaData.keySet()) {
                     if (MODULE_VALUE == appInfo.metaData.get(key)) {
                         modules.add(parseModule(key))
@@ -50,7 +50,7 @@ class ManifestParser(private val context: Context) {
             throw RuntimeException("Unable to instantiate ConfigModule implementation for $clazz", e)
         }
         if (module !is ConfigModule) {
-            throw RuntimeException("Expected instanceof ConfigModule, but found: $module")
+            throw RuntimeException("Expected instance of ConfigModule, but found: $module")
         }
         return module
     }

@@ -20,11 +20,11 @@ import timber.log.Timber
 object UIUtils {
 
     fun showSnackBar(message: String, duration: Int = Snackbar.LENGTH_SHORT) {
-        if (AppManager.getCurrentActivity() == null) {
+        val currentActivity = AppManager.getCurrentActivity()
+        if (currentActivity == null) {
             Timber.w("mCurrentActivity == null when showSnackBar")
         } else {
-            val view: View = AppManager.getCurrentActivity()!!
-                    .window.decorView.findViewById(android.R.id.content)
+            val view: View = currentActivity.window.decorView.findViewById(android.R.id.content)
             Snackbar.make(view, message, duration).show()
         }
     }
@@ -64,8 +64,8 @@ object UIUtils {
      * @param spValue sp值
      * @return px值
      */
-    fun spToPx(context: Context, spValue:Float):Int{
-        val scale=context.resources.displayMetrics.scaledDensity
+    fun spToPx(context: Context, spValue: Float): Int {
+        val scale = context.resources.displayMetrics.scaledDensity
         return (spValue * scale + 0.5f).toInt()
     }
 }

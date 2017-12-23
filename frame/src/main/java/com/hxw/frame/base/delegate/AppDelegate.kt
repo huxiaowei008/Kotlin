@@ -12,7 +12,7 @@ import com.hxw.frame.integration.ConfigModule
 import com.hxw.frame.integration.ManifestParser
 
 /**
- * application的代理
+ * Application的代理
  * @author hxw
  * @date 2017/8/28
  */
@@ -22,8 +22,8 @@ class AppDelegate(context: Context) : AppLifecycle {
         var instance: Application by DelegatesExt.notNullSingleValue()
 
     }
-
-    private val mAppLifecycle: MutableList<AppLifecycle> = mutableListOf()//application的生命内容外部拓展
+    //application的生命内容外部拓展
+    private val mAppLifecycle: MutableList<AppLifecycle> = mutableListOf()
     //这里的activity生命周期回调是给外面拓展用的
     private val activityLifecycle: MutableList<Application.ActivityLifecycleCallbacks> = mutableListOf()
     //解析清单文件配置的自定义ConfigModule的metadata标签，返回一个ConfigModule集合

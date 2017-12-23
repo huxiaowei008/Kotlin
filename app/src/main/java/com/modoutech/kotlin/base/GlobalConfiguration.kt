@@ -10,7 +10,7 @@ import com.google.gson.GsonBuilder
 import com.google.gson.JsonIOException
 import com.google.gson.JsonParseException
 import com.hxw.frame.base.delegate.AppLifecycle
-import com.hxw.frame.base.delegate.BaseActivityLife
+import com.hxw.frame.base.delegate.BaseActivityLifecycleCallbacks
 import com.hxw.frame.di.module.ClientModule
 import com.hxw.frame.di.module.GlobalConfigModule
 import com.hxw.frame.http.OnResponseErrorListener
@@ -74,7 +74,7 @@ class GlobalConfiguration : ConfigModule {
     }
 
     override fun injectActivityLifecycle(context: Context, lifecycle: MutableList<Application.ActivityLifecycleCallbacks>) {
-        lifecycle.add(object : BaseActivityLife() {
+        lifecycle.add(object : BaseActivityLifecycleCallbacks() {
             override fun onActivityCreated(activity: Activity, savedInstanceState: Bundle?) {
                 super.onActivityCreated(activity, savedInstanceState)
                 UIUtils.noStatusBar(activity)

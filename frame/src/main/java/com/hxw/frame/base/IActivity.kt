@@ -1,6 +1,7 @@
 package com.hxw.frame.base
 
 import android.os.Bundle
+import com.hxw.frame.di.FrameComponent
 
 /**
  * activity基础接口
@@ -20,7 +21,7 @@ interface IActivity {
      *
      * @param frameComponent 基础注入器
      */
-    //    fun componentInject(frameComponent: FrameComponent)
+    fun componentInject(frameComponent: FrameComponent)
 
     /**
      * 初始化，会在onCreate中执行
@@ -29,7 +30,7 @@ interface IActivity {
 
     /**
      * 这个Activity是否会使用Fragment,框架会根据这个属性判断是否注册{@link android.support.v4.app.FragmentManager.FragmentLifecycleCallbacks}
-     * 如果返回false,那意味着这个Activity不需要绑定Fragment,这个Activity中的Fragment不会执行FragmentLifecycleCallbacks中的代码
+     * @return false:那意味着这个Activity不需要绑定Fragment,这个Activity中的Fragment不会执行FragmentLifecycleCallbacks中的代码
      *
      */
     fun useFragment(): Boolean

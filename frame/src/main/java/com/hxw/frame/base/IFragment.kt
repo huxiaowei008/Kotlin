@@ -1,9 +1,10 @@
 package com.hxw.frame.base
 
 import android.os.Bundle
+import com.hxw.frame.di.FrameComponent
 
 /**
- * fragment基础接口
+ * Fragment基础接口
  * @author hxw
  * @date 2017/8/29
  */
@@ -20,7 +21,7 @@ interface IFragment {
      *
      * @param frameComponent 基础注入器
      */
-    //    fun componentInject(frameComponent: FrameComponent)
+    fun componentInject(frameComponent: FrameComponent)
 
     /**
      * 初始化，会在onCreate中执行

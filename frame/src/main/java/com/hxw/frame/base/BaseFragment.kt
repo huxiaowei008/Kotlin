@@ -7,6 +7,8 @@ import android.support.v4.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import com.hxw.frame.base.delegate.AppDelegate
+import com.hxw.frame.di.FrameComponent
 import com.trello.rxlifecycle2.LifecycleProvider
 import com.trello.rxlifecycle2.LifecycleTransformer
 import com.trello.rxlifecycle2.RxLifecycle
@@ -16,7 +18,7 @@ import io.reactivex.Observable
 import io.reactivex.subjects.BehaviorSubject
 
 /**
- * fragment基类
+ * Fragment基类
  * @author hxw
  * @date 2017/8/30
  */
@@ -56,6 +58,7 @@ abstract class BaseFragment : Fragment(), IFragment, LifecycleProvider<FragmentE
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
+        componentInject(AppDelegate.FRAME_COMPONENT)
         init(savedInstanceState)
     }
 
@@ -92,5 +95,9 @@ abstract class BaseFragment : Fragment(), IFragment, LifecycleProvider<FragmentE
     override fun onDetach() {
         lifecycleSubject.onNext(FragmentEvent.DETACH)
         super.onDetach()
+    }
+
+    override fun componentInject(frameComponent: FrameComponent) {
+
     }
 }

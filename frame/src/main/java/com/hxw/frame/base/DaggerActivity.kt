@@ -10,7 +10,7 @@ import dagger.internal.Beta
 import javax.inject.Inject
 
 /**
- * 使用注入的activity基类
+ * 使用注入的Activity基类
  * @author hxw
  * @date 2017/9/20
  */
