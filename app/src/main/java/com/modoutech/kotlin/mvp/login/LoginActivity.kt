@@ -59,7 +59,7 @@ class LoginActivity : DaggerActivity(), LoginContract.View {
     }
 
     override fun onDestroy() {
-        mPresenter.onDestroy()
         super.onDestroy()
+        mPresenter.dropView()
     }
 }

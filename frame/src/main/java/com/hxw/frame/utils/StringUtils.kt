@@ -86,17 +86,14 @@ object StringUtils {
                             it.split("=")
                         }
                         .forEach {
-                            if (!it[0].isNullOrEmpty() && !it[1].isNullOrEmpty()) {
-                                mapRequest.put(it[0], it[1])
-                            } else if (!it[0].isNullOrEmpty()) {
-                                mapRequest.put(it[0], "")
-                            }
+                            mapRequest.put(it[0], it[1])
                         }
-
                 mapRequest
             } catch (e: MalformedURLException) {
                 e.printStackTrace()
                 hashMapOf()
+            } catch (e: IndexOutOfBoundsException) {
+                throw RuntimeException("解析后数组越界,url格式有问题")
             }
 
     /**

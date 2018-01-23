@@ -95,7 +95,7 @@ object AppManager {
     /**
      * 关闭所有 activity
      */
-    fun killAll() {
+    private fun killAll() {
         activityStack.forEach {
             it.finish()
         }

@@ -6,6 +6,7 @@ import com.modoutech.kotlin.base.MyApplication
 import dagger.Component
 import dagger.android.AndroidInjector
 import dagger.android.support.AndroidSupportInjectionModule
+import javax.inject.Singleton
 
 /**
  * @author hxw

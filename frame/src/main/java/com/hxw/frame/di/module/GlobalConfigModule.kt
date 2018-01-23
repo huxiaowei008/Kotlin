@@ -1,7 +1,6 @@
 package com.hxw.frame.di.module
 
 import android.app.Application
-import com.hxw.frame.http.OnResponseErrorListener
 import com.hxw.frame.imageloader.IImageLoader
 import com.hxw.frame.imageloader.glide.GlideLoader
 import com.hxw.frame.utils.FileUtils
@@ -19,7 +18,6 @@ import javax.inject.Singleton
 @Module
 class GlobalConfigModule(builder: Builder) {
     private var apiUrl = builder.apiUrl
-    private var onResponseErrorListener = builder.onResponseErrorListener
     private var cacheFile = builder.cacheFile
     private var imgLoader = builder.imgLoader
     private var gsonConfiguration = builder.gsonConfiguration
@@ -51,13 +49,8 @@ class GlobalConfigModule(builder: Builder) {
     @Provides
     fun provideOkhttpConfiguration() = okHttpConfiguration
 
-    @Singleton
-    @Provides
-    fun provideResponseErrorListener() = onResponseErrorListener
-
     companion object Builder {
         private var apiUrl = HttpUrl.parse("https://api.github.com/")
-        private var onResponseErrorListener: OnResponseErrorListener? = null
         private var cacheFile: File? = null
         private var imgLoader: IImageLoader? = null
         private var gsonConfiguration: ClientModule.GsonConfiguration? = null
@@ -66,12 +59,6 @@ class GlobalConfigModule(builder: Builder) {
 
         fun baseUrl(baseUrl: String): Builder {
             this.apiUrl = HttpUrl.parse(baseUrl)
-            return this
-        }
-
-        //处理所有Rxjava的onError逻辑
-        fun responseErrorListener(listener: OnResponseErrorListener): Builder {
-            this.onResponseErrorListener = listener
             return this
         }
 

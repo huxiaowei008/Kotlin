@@ -40,7 +40,7 @@ class ActivityLifecycle(private val modules: MutableList<ConfigModule>,
                 it.injectFragmentLifecycle(mApplication, fragmentLifecycle)
             }
             //注册拓展的代码
-            fragmentLifecycle?.forEach {
+            fragmentLifecycle.forEach {
                 activity.supportFragmentManager
                         .registerFragmentLifecycleCallbacks(it, true)
             }

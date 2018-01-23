@@ -21,7 +21,6 @@ import io.reactivex.subjects.BehaviorSubject
  * @date 2017/8/29
  */
 abstract class BaseActivity : AppCompatActivity(), IActivity, LifecycleProvider<ActivityEvent> {
-    protected val TAG: String = this.javaClass.simpleName
     private val lifecycleSubject = BehaviorSubject.create<ActivityEvent>()
 
     @CheckResult

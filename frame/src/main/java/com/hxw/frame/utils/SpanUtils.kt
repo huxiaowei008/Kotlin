@@ -12,14 +12,15 @@ import android.text.style.ForegroundColorSpan
  * @date 2018/1/5.
  */
 object SpanUtils {
-    private lateinit var mBuilder: SpannableStringBuilder
+    private val mBuilder: SpannableStringBuilder by lazy { SpannableStringBuilder() }
     private var start = 0
     /**
      * 新的字符, 这需要最先调用
      */
     fun newString(text: CharSequence): SpanUtils {
         start = 0
-        mBuilder = SpannableStringBuilder()
+        mBuilder.clearSpans()
+        mBuilder.clear()
         mBuilder.append(text)
         return this
     }

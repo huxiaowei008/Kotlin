@@ -3,6 +3,7 @@ package com.hxw.frame.integration
 import android.content.Context
 import android.content.pm.PackageManager
 import timber.log.Timber
+import java.lang.reflect.InvocationTargetException
 
 /**
  * Manifest解析工具
@@ -10,23 +11,30 @@ import timber.log.Timber
  * @date 2017/8/19
  */
 class ManifestParser(private val context: Context) {
+
     private val TAG = "ManifestParser"
     private val MODULE_VALUE = "ConfigModule"
 
+
     fun parse(): MutableList<ConfigModule> {
+        Timber.tag(TAG).d("Loading Config modules")
         val modules = mutableListOf<ConfigModule>()
         try {
             val appInfo = context.packageManager
                     .getApplicationInfo(context.packageName, PackageManager.GET_META_DATA)
-            if (appInfo.metaData != null) {
-                Timber.tag(TAG).v("Got app info metadata: ${appInfo.metaData}")
-                for (key: String in appInfo.metaData.keySet()) {
-                    if (MODULE_VALUE == appInfo.metaData.get(key)) {
-                        modules.add(parseModule(key))
-                        Timber.tag(TAG).d("Loaded Config module: $key")
-                    }
+            if (appInfo.metaData == null) {
+                Timber.tag(TAG).d("Got null app info metadata")
+                return modules
+            }
+
+            Timber.tag(TAG).v("Got app info metadata: ${appInfo.metaData}")
+            for (key: String in appInfo.metaData.keySet()) {
+                if (MODULE_VALUE == appInfo.metaData.get(key)) {
+                    modules.add(parseModule(key))
+                    Timber.tag(TAG).d("Loaded Config module: $key")
                 }
             }
+
         } catch (e: PackageManager.NameNotFoundException) {
             throw RuntimeException("Unable to find metadata to parse ConfigModule", e)
         }
@@ -42,16 +50,24 @@ class ManifestParser(private val context: Context) {
         }
 
         val module = try {
-            clazz.newInstance()
-        } catch (e: InstantiationException) {
-            throw RuntimeException("Unable to instantiate ConfigModule implementation for $clazz", e)
+            clazz.getDeclaredConstructor().newInstance()
             // These can't be combined until API minimum is 19.
+        } catch (e: InstantiationException) {
+            throwInstantiateGlideModuleException(clazz, e)
         } catch (e: IllegalAccessException) {
-            throw RuntimeException("Unable to instantiate ConfigModule implementation for $clazz", e)
+            throwInstantiateGlideModuleException(clazz, e)
+        } catch (e: NoSuchMethodException) {
+            throwInstantiateGlideModuleException(clazz, e)
+        } catch (e: InvocationTargetException) {
+            throwInstantiateGlideModuleException(clazz, e)
         }
         if (module !is ConfigModule) {
             throw RuntimeException("Expected instance of ConfigModule, but found: $module")
         }
         return module
+    }
+
+    private fun throwInstantiateGlideModuleException(clazz: Class<*>, e: Exception) {
+        throw RuntimeException("Unable to instantiate ConfigModule implementation for " + clazz, e)
     }
 }

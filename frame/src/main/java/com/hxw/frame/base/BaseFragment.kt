@@ -23,7 +23,6 @@ import io.reactivex.subjects.BehaviorSubject
  * @date 2017/8/30
  */
 abstract class BaseFragment : Fragment(), IFragment, LifecycleProvider<FragmentEvent> {
-    protected val TAG = this.javaClass.simpleName!!
     private val lifecycleSubject = BehaviorSubject.create<FragmentEvent>()
 
     @CheckResult

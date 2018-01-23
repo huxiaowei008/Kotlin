@@ -22,12 +22,13 @@ class AppDelegate(context: Context) : AppLifecycle {
         var instance: Application by DelegatesExt.notNullSingleValue()
 
     }
+
     //application的生命内容外部拓展
     private val mAppLifecycle: MutableList<AppLifecycle> = mutableListOf()
     //这里的activity生命周期回调是给外面拓展用的
     private val activityLifecycle: MutableList<Application.ActivityLifecycleCallbacks> = mutableListOf()
     //解析清单文件配置的自定义ConfigModule的metadata标签，返回一个ConfigModule集合
-    private val mModules: MutableList<ConfigModule> = ManifestParser(context).parse()
+    private var mModules: MutableList<ConfigModule> = ManifestParser(context).parse()
     private var mActivityLifecycle: ActivityLifecycle by DelegatesExt.notNullSingleValue()
 
     init {
@@ -67,16 +68,13 @@ class AppDelegate(context: Context) : AppLifecycle {
 
     override fun onTerminate(application: Application) {
         application.unregisterActivityLifecycleCallbacks(mActivityLifecycle)
-        if (activityLifecycle.isNotEmpty()) {
-            activityLifecycle.forEach {
-                application.unregisterActivityLifecycleCallbacks(it)
-            }
+        activityLifecycle.forEach {
+            application.unregisterActivityLifecycleCallbacks(it)
         }
-        if (mAppLifecycle.isNotEmpty()) {
-            mAppLifecycle.forEach {
-                it.onTerminate(application)
-            }
+        mAppLifecycle.forEach {
+            it.onTerminate(application)
         }
+
 
     }
 

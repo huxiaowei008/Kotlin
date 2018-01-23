@@ -31,7 +31,7 @@ object FileUtils {
     /**
      * 获取自定义缓存文件地址
      */
-    fun getCacheFilePath(context: Context) = Environment.getExternalStorageDirectory().path + context.packageName
+    private fun getCacheFilePath(context: Context) = Environment.getExternalStorageDirectory().path + context.packageName
 
     /**
      * 创建未存在的文件夹

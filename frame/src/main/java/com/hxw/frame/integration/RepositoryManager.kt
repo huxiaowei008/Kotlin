@@ -19,6 +19,4 @@ class RepositoryManager(private val mRetrofit: Retrofit) {
                 }
                 retrofitService
             }
-
-
 }
