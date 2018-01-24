@@ -176,6 +176,7 @@ object DateUtils {
      * @param pattern 时间格式
      * @return 时间字符串
      */
+    @JvmStatic
     fun date2String(date: Date, pattern: String = "yyyy-MM-dd HH:mm:ss") =
             SimpleDateFormat(pattern, Locale.getDefault()).format(date)
 
@@ -187,6 +188,7 @@ object DateUtils {
      * @param pattern 时间格式
      * @return Date类型
      */
+    @JvmStatic
     fun string2Date(time: String, pattern: String = "yyyy-MM-dd HH:mm:ss") =
             SimpleDateFormat(pattern, Locale.getDefault()).parse(time)
 
@@ -195,6 +197,7 @@ object DateUtils {
      *
      * @return 毫秒时间戳
      */
+    @JvmStatic
     fun getNowTimeMills() = System.currentTimeMillis()
 
     /**
@@ -212,6 +215,7 @@ object DateUtils {
      * <li>时间不合法的情况全部日期和时间信息，如星期六 十月 27 14:21:20 CST 2007</li>
      * </ul>
      */
+    @JvmStatic
     fun getFriendlyTimeSpan(millis: Long): String {
         val now = System.currentTimeMillis()
         val span = now - millis
@@ -231,6 +235,7 @@ object DateUtils {
      * @param year 年份
      * @return {@code true}: 闰年<br>{@code false}: 平年
      */
+    @JvmStatic
     fun isLeapYear(year: Int) = (year % 4 == 0 && year % 100 != 0) || year % 400 == 0
 
     /**
@@ -239,6 +244,7 @@ object DateUtils {
      * @param date Date类型时间
      * @return 星期
      */
+    @JvmStatic
     fun getWeek(date: Date) = SimpleDateFormat("EEEE", Locale.getDefault()).format(date)
 
     /**
@@ -248,6 +254,7 @@ object DateUtils {
      * @param date Date类型时间
      * @return 1...5
      */
+    @JvmStatic
     fun getWeekOfMonth(date: Date): Int {
         val cal = Calendar.getInstance()
         cal.time = date

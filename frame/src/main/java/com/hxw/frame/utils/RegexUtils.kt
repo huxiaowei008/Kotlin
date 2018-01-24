@@ -16,6 +16,7 @@ object RegexUtils {
      * @param input 待验证文本
      * @return `true`: 匹配<br></br>`false`: 不匹配
      */
+    @JvmStatic
     fun isMobileSimple(input: CharSequence): Boolean =
             isMatch(RegexConstants.REGEX_MOBILE_SIMPLE, input)
 
@@ -25,6 +26,7 @@ object RegexUtils {
      * @param input 待验证文本
      * @return `true`: 匹配<br></br>`false`: 不匹配
      */
+    @JvmStatic
     fun isMobileExact(input: CharSequence): Boolean =
             isMatch(RegexConstants.REGEX_MOBILE_EXACT, input)
 
@@ -34,6 +36,7 @@ object RegexUtils {
      * @param input 待验证文本
      * @return `true`: 匹配<br></br>`false`: 不匹配
      */
+    @JvmStatic
     fun isTel(input: CharSequence): Boolean = isMatch(RegexConstants.REGEX_TEL, input)
 
     /**
@@ -42,6 +45,7 @@ object RegexUtils {
      * @param input 待验证文本
      * @return `true`: 匹配<br></br>`false`: 不匹配
      */
+    @JvmStatic
     fun isIDCard15(input: CharSequence): Boolean = isMatch(RegexConstants.REGEX_ID_CARD15, input)
 
     /**
@@ -50,6 +54,7 @@ object RegexUtils {
      * @param input 待验证文本
      * @return `true`: 匹配<br></br>`false`: 不匹配
      */
+    @JvmStatic
     fun isIDCard18(input: CharSequence): Boolean = isMatch(RegexConstants.REGEX_ID_CARD18, input)
 
     /**
@@ -58,6 +63,7 @@ object RegexUtils {
      * @param input 待验证文本
      * @return `true`: 匹配<br></br>`false`: 不匹配
      */
+    @JvmStatic
     fun isEmail(input: CharSequence): Boolean = isMatch(RegexConstants.REGEX_EMAIL, input)
 
     /**
@@ -66,6 +72,7 @@ object RegexUtils {
      * @param input 待验证文本
      * @return `true`: 匹配<br></br>`false`: 不匹配
      */
+    @JvmStatic
     fun isURL(input: CharSequence): Boolean = isMatch(RegexConstants.REGEX_URL, input)
 
     /**
@@ -74,6 +81,7 @@ object RegexUtils {
      * @param input 待验证文本
      * @return `true`: 匹配<br></br>`false`: 不匹配
      */
+    @JvmStatic
     fun isZh(input: CharSequence): Boolean = isMatch(RegexConstants.REGEX_ZH, input)
 
     /**
@@ -84,6 +92,7 @@ object RegexUtils {
      * @param input 待验证文本
      * @return `true`: 匹配<br></br>`false`: 不匹配
      */
+    @JvmStatic
     fun isUsername(input: CharSequence): Boolean = isMatch(RegexConstants.REGEX_USERNAME, input)
 
     /**
@@ -92,6 +101,7 @@ object RegexUtils {
      * @param input 待验证文本
      * @return `true`: 匹配<br></br>`false`: 不匹配
      */
+    @JvmStatic
     fun isDate(input: CharSequence): Boolean = isMatch(RegexConstants.REGEX_DATE, input)
 
     /**
@@ -100,6 +110,7 @@ object RegexUtils {
      * @param input 待验证文本
      * @return `true`: 匹配<br></br>`false`: 不匹配
      */
+    @JvmStatic
     fun isIP(input: CharSequence): Boolean = isMatch(RegexConstants.REGEX_IP, input)
 
     /**
@@ -108,6 +119,7 @@ object RegexUtils {
      * @param input 待验证文本
      * @return `true`: 匹配<br></br>`false`: 不匹配
      */
+    @JvmStatic
     fun isLicense(input: CharSequence): Boolean = isMatch(RegexConstants.REGEX_LICENSE, input)
 
     /**
@@ -117,6 +129,7 @@ object RegexUtils {
      * @param input 要匹配的字符串
      * @return `true`: 匹配<br></br>`false`: 不匹配
      */
+    @JvmStatic
     fun isMatch(regex: String, input: CharSequence?): Boolean =
             input != null && input.isNotEmpty() && Pattern.matches(regex, input)
 
@@ -127,6 +140,7 @@ object RegexUtils {
      * @param input 要匹配的字符串
      * @return 正则匹配的部分
      */
+    @JvmStatic
     fun getMatches(regex: String, input: CharSequence): List<String> {
         val matches = ArrayList<String>()
         val pattern = Pattern.compile(regex)
@@ -144,6 +158,7 @@ object RegexUtils {
      * @param regex 正则表达式
      * @return 正则匹配分组
      */
+    @JvmStatic
     fun getSplits(input: String, regex: String): Array<String>? =
             input.split(regex.toRegex()).dropLastWhile { it.isEmpty() }.toTypedArray()
 
@@ -155,6 +170,7 @@ object RegexUtils {
      * @param replacement 代替者
      * @return 替换正则匹配的第一部分
      */
+    @JvmStatic
     fun getReplaceFirst(input: String, regex: String, replacement: String): String =
             Pattern.compile(regex).matcher(input).replaceFirst(replacement)
 
@@ -166,6 +182,7 @@ object RegexUtils {
      * @param replacement 代替者
      * @return 替换所有正则匹配的部分
      */
+    @JvmStatic
     fun getReplaceAll(input: String, regex: String, replacement: String): String =
             Pattern.compile(regex).matcher(input).replaceAll(replacement)
 

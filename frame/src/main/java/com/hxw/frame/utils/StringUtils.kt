@@ -25,6 +25,7 @@ object StringUtils {
     /**
      * json 格式化
      */
+    @JvmStatic
     fun jsonFormat(json: String): String {
         if (TextUtils.isEmpty(json)) {
             return "json 数据为空!"
@@ -52,6 +53,7 @@ object StringUtils {
     /**
      * xml 格式化
      */
+    @JvmStatic
     fun xmlFormat(xml: String): String {
         if (TextUtils.isEmpty(xml)) {
             return "xml 数据为空!"
@@ -73,6 +75,7 @@ object StringUtils {
     /**
      * 解析url的参数以map返回
      */
+    @JvmStatic
     fun urlRequestFormat(urlString: String): Map<String, String> =
             try {
                 val mapRequest = hashMapOf<String, String>()
@@ -99,6 +102,7 @@ object StringUtils {
     /**
      * String数组变String,用|隔开
      */
+    @JvmStatic
     fun arrayStringToString(array: ArrayList<String>): String {
         val regularEx = "|"
         var str = ""

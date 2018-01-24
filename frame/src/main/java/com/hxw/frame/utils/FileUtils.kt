@@ -14,6 +14,7 @@ object FileUtils {
     /**
      * 返回缓存文件夹
      */
+    @JvmStatic
     fun getCacheFile(context: Context): File {
         return if (Environment.getExternalStorageState() == Environment.MEDIA_MOUNTED) {
             var file = context.externalCacheDir//获取系统管理的外部存储目录
@@ -31,11 +32,13 @@ object FileUtils {
     /**
      * 获取自定义缓存文件地址
      */
+    @JvmStatic
     private fun getCacheFilePath(context: Context) = Environment.getExternalStorageDirectory().path + context.packageName
 
     /**
      * 创建未存在的文件夹
      */
+    @JvmStatic
     fun makeDirs(file: File):File{
         if (!isFileExists(file)){
             file.mkdirs()
@@ -47,5 +50,6 @@ object FileUtils {
      * 判断文件是否存在
      * @return {@code true}: 存在<br>{@code false}: 不存在
      */
+    @JvmStatic
     fun isFileExists(file: File?) = file != null && file.exists()
 }

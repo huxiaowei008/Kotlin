@@ -19,6 +19,7 @@ import timber.log.Timber
  */
 object UIUtils {
 
+    @JvmStatic
     fun showSnackBar(message: String, duration: Int = Snackbar.LENGTH_SHORT) {
         val currentActivity = AppManager.getCurrentActivity()
         if (currentActivity == null) {
@@ -29,6 +30,7 @@ object UIUtils {
         }
     }
 
+    @JvmStatic
     fun toast(message: String, duration: Int = Toast.LENGTH_SHORT) {
         Toast.makeText(AppDelegate.instance, message, duration).show()
     }
@@ -36,6 +38,7 @@ object UIUtils {
     /**
      * 沉浸式状态栏
      */
+    @JvmStatic
     fun noStatusBar(activity: Activity) {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             activity.window.statusBarColor = Color.TRANSPARENT
@@ -53,6 +56,7 @@ object UIUtils {
      * @param dpValue dp值
      * @return px值
      */
+    @JvmStatic
     fun dpToPx(context: Context, dpValue: Float): Int {
         val scale = context.resources.displayMetrics.scaledDensity
         return (dpValue * scale + 0.5f).toInt()
@@ -64,6 +68,7 @@ object UIUtils {
      * @param spValue sp值
      * @return px值
      */
+    @JvmStatic
     fun spToPx(context: Context, spValue: Float): Int {
         val scale = context.resources.displayMetrics.scaledDensity
         return (spValue * scale + 0.5f).toInt()
