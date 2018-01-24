@@ -5,6 +5,7 @@ import android.app.Application
 import android.content.Context
 import android.os.Bundle
 import android.support.v4.app.FragmentManager
+import android.support.v7.app.AppCompatDelegate
 import com.google.gson.GsonBuilder
 import com.hxw.frame.base.delegate.AppLifecycle
 import com.hxw.frame.base.delegate.BaseActivityLifecycleCallbacks
@@ -42,6 +43,7 @@ class GlobalConfiguration : ConfigModule {
                 if (BuildConfig.LOG_DEBUG) {
                     Timber.plant(Timber.DebugTree())
                 }
+
             }
 
             override fun onTerminate(application: Application) {

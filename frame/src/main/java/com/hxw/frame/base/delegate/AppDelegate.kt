@@ -2,6 +2,8 @@ package com.hxw.frame.base.delegate
 
 import android.app.Application
 import android.content.Context
+import android.os.Build
+import android.support.v7.app.AppCompatDelegate
 import com.hxw.frame.base.DelegatesExt
 import com.hxw.frame.di.DaggerFrameComponent
 import com.hxw.frame.di.FrameComponent
@@ -63,6 +65,10 @@ class AppDelegate(context: Context) : AppLifecycle {
 
         mAppLifecycle.forEach {
             it.onCreate(application)
+        }
+        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.LOLLIPOP) {
+            //Vector 低版本兼容,不要忘了在gradle的defaultConfig中的vectorDrawables.useSupportLibrary = true
+            AppCompatDelegate.setCompatVectorFromResourcesEnabled(true)
         }
     }
 

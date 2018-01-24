@@ -37,7 +37,7 @@ class LoginPresenter @Inject constructor(
                     }
 
                     override fun onNext(t: Int) {
-                        UIUtils.toast("成功")
+                       mView?.showMessage("成功")
                     }
                 })
 

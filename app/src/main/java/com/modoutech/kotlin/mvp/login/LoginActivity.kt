@@ -7,6 +7,7 @@ import com.hxw.frame.base.DaggerActivity
 import com.hxw.frame.imageloader.ImageLoader
 import com.hxw.frame.utils.SpanUtils
 import com.hxw.frame.utils.StringUtils
+import com.hxw.frame.utils.UIUtils
 import com.jakewharton.rxbinding2.view.RxView
 import com.modoutech.kotlin.R
 import com.trello.rxlifecycle2.kotlin.bindToLifecycle
@@ -46,7 +47,7 @@ class LoginActivity : DaggerActivity(), LoginContract.View {
     }
 
     override fun showMessage(message: String) {
-
+        UIUtils.toast(message)
     }
 
     override fun launchActivity() {
