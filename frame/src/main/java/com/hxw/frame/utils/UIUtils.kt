@@ -48,6 +48,8 @@ object UIUtils {
             activity.window.setFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS,
                     WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS)
         }
+        //这是把状态栏顶上去,轻触下拉时会下来的,一些效果上可以参考
+//        activity.window.setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN)
     }
 
     /**
