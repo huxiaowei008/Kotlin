@@ -104,4 +104,5 @@ dependencies {
     api rootProject.ext.dependencies["dagger-android-support"]
     kapt rootProject.ext.dependencies["dagger-android-processor"]
 }
-
+//需要放在这,放上面会出问题 Error:Cause: android.compileSdkVersion is missing!
+apply from: 'bintray.gradle'
