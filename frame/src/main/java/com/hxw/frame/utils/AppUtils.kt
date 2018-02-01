@@ -10,6 +10,7 @@ import android.content.Context
  */
 object AppUtils {
 
+    @JvmStatic
     fun getVersionCode(context: Context): Int = try {
         val info = context.packageManager.getPackageInfo(context.packageName, 0)
         info.versionCode
@@ -18,6 +19,7 @@ object AppUtils {
         0
     }
 
+    @JvmStatic
     fun getVersionName(context: Context): String = try {
         val info = context.packageManager.getPackageInfo(context.packageName, 0)
         info.versionName

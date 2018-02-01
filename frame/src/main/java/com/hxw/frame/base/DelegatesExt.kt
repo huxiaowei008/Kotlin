@@ -13,7 +13,7 @@ object DelegatesExt {
 
 }
 
-class NotNullSingleValueVar<T>() : ReadWriteProperty<Any?, T> {
+class NotNullSingleValueVar<T> : ReadWriteProperty<Any?, T> {
 
     private var value: T? = null
 

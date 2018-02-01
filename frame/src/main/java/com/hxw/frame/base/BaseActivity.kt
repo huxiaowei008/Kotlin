@@ -5,6 +5,8 @@ import android.support.annotation.CallSuper
 import android.support.annotation.CheckResult
 import android.support.annotation.NonNull
 import android.support.v7.app.AppCompatActivity
+import com.hxw.frame.base.delegate.AppDelegate
+import com.hxw.frame.di.FrameComponent
 import com.trello.rxlifecycle2.LifecycleProvider
 import com.trello.rxlifecycle2.LifecycleTransformer
 import com.trello.rxlifecycle2.RxLifecycle
@@ -14,12 +16,11 @@ import io.reactivex.Observable
 import io.reactivex.subjects.BehaviorSubject
 
 /**
- * activity基类
+ * Activity基类
  * @author hxw
  * @date 2017/8/29
  */
 abstract class BaseActivity : AppCompatActivity(), IActivity, LifecycleProvider<ActivityEvent> {
-    protected val TAG = this.javaClass.simpleName!!
     private val lifecycleSubject = BehaviorSubject.create<ActivityEvent>()
 
     @CheckResult
@@ -41,7 +42,7 @@ abstract class BaseActivity : AppCompatActivity(), IActivity, LifecycleProvider<
         if (getLayoutId() != 0) {
             setContentView(getLayoutId())
         }
-
+        componentInject(AppDelegate.FRAME_COMPONENT)
         init(savedInstanceState)
     }
 
@@ -61,7 +62,6 @@ abstract class BaseActivity : AppCompatActivity(), IActivity, LifecycleProvider<
     override fun onPause() {
         lifecycleSubject.onNext(ActivityEvent.PAUSE)
         super.onPause()
-
     }
 
     @CallSuper
@@ -78,4 +78,7 @@ abstract class BaseActivity : AppCompatActivity(), IActivity, LifecycleProvider<
 
     override fun useFragment(): Boolean = false
 
+    override fun componentInject(frameComponent: FrameComponent) {
+
+    }
 }

@@ -9,7 +9,7 @@ import android.os.Bundle
  * @author hxw
  * @date 2017/10/17
  */
-abstract class BaseActivityLife : Application.ActivityLifecycleCallbacks {
+abstract class BaseActivityLifecycleCallbacks : Application.ActivityLifecycleCallbacks {
     override fun onActivityPaused(activity: Activity) {
 
     }

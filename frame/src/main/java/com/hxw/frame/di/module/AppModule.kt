@@ -2,6 +2,7 @@ package com.hxw.frame.di.module
 
 import android.app.Application
 import android.content.Context
+import android.content.SharedPreferences
 import dagger.Module
 import dagger.Provides
 import javax.inject.Singleton
@@ -26,5 +27,6 @@ class AppModule(private val application: Application) {
      */
     @Singleton
     @Provides
-    fun provideUserSharedPreferences() = application.getSharedPreferences("UserData", Context.MODE_PRIVATE)
+    fun provideUserSharedPreferences(): SharedPreferences
+            = application.getSharedPreferences("UserData", Context.MODE_PRIVATE)
 }

@@ -25,6 +25,7 @@ object StringUtils {
     /**
      * json 格式化
      */
+    @JvmStatic
     fun jsonFormat(json: String): String {
         if (TextUtils.isEmpty(json)) {
             return "json 数据为空!"
@@ -52,6 +53,7 @@ object StringUtils {
     /**
      * xml 格式化
      */
+    @JvmStatic
     fun xmlFormat(xml: String): String {
         if (TextUtils.isEmpty(xml)) {
             return "xml 数据为空!"
@@ -73,13 +75,13 @@ object StringUtils {
     /**
      * 解析url的参数以map返回
      */
+    @JvmStatic
     fun urlRequestFormat(urlString: String): Map<String, String> =
             try {
                 val mapRequest = hashMapOf<String, String>()
                 val url = URL(urlString)
                 val query = url.query
                 val arrSplit = query.split("&")
-
                 arrSplit
                         .asSequence()
                         .map {
@@ -87,22 +89,20 @@ object StringUtils {
                             it.split("=")
                         }
                         .forEach {
-                            if (!it[0].isNullOrEmpty() && !it[1].isNullOrEmpty()) {
-                                mapRequest.put(it[0], it[1])
-                            } else if (!it[0].isNullOrEmpty()) {
-                                mapRequest.put(it[0], "")
-                            }
+                            mapRequest.put(it[0], it[1])
                         }
-
                 mapRequest
             } catch (e: MalformedURLException) {
                 e.printStackTrace()
                 hashMapOf()
+            } catch (e: IndexOutOfBoundsException) {
+                throw RuntimeException("解析后数组越界,url格式有问题")
             }
 
     /**
      * String数组变String,用|隔开
      */
+    @JvmStatic
     fun arrayStringToString(array: ArrayList<String>): String {
         val regularEx = "|"
         var str = ""

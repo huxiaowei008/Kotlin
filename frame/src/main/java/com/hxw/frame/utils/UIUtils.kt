@@ -19,16 +19,18 @@ import timber.log.Timber
  */
 object UIUtils {
 
+    @JvmStatic
     fun showSnackBar(message: String, duration: Int = Snackbar.LENGTH_SHORT) {
-        if (AppManager.getCurrentActivity() == null) {
+        val currentActivity = AppManager.getCurrentActivity()
+        if (currentActivity == null) {
             Timber.w("mCurrentActivity == null when showSnackBar")
         } else {
-            val view: View = AppManager.getCurrentActivity()!!
-                    .window.decorView.findViewById(android.R.id.content)
+            val view: View = currentActivity.window.decorView.findViewById(android.R.id.content)
             Snackbar.make(view, message, duration).show()
         }
     }
 
+    @JvmStatic
     fun toast(message: String, duration: Int = Toast.LENGTH_SHORT) {
         Toast.makeText(AppDelegate.instance, message, duration).show()
     }
@@ -36,6 +38,7 @@ object UIUtils {
     /**
      * 沉浸式状态栏
      */
+    @JvmStatic
     fun noStatusBar(activity: Activity) {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             activity.window.statusBarColor = Color.TRANSPARENT
@@ -45,6 +48,8 @@ object UIUtils {
             activity.window.setFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS,
                     WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS)
         }
+        //这是把状态栏顶上去,轻触下拉时会下来的,一些效果上可以参考
+//        activity.window.setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN)
     }
 
     /**
@@ -53,6 +58,7 @@ object UIUtils {
      * @param dpValue dp值
      * @return px值
      */
+    @JvmStatic
     fun dpToPx(context: Context, dpValue: Float): Int {
         val scale = context.resources.displayMetrics.scaledDensity
         return (dpValue * scale + 0.5f).toInt()
@@ -64,8 +70,9 @@ object UIUtils {
      * @param spValue sp值
      * @return px值
      */
-    fun spToPx(context: Context, spValue:Float):Int{
-        val scale=context.resources.displayMetrics.scaledDensity
+    @JvmStatic
+    fun spToPx(context: Context, spValue: Float): Int {
+        val scale = context.resources.displayMetrics.scaledDensity
         return (spValue * scale + 0.5f).toInt()
     }
 }

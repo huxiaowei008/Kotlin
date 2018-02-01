@@ -2,7 +2,6 @@ package com.modoutech.kotlin.mvp.login
 
 import com.hxw.frame.di.scope.ActivityScope
 import com.hxw.frame.http.AbstractErrorSubscriber
-import com.hxw.frame.http.ErrorHandler
 import com.hxw.frame.integration.RepositoryManager
 import com.hxw.frame.utils.UIUtils
 import com.trello.rxlifecycle2.LifecycleProvider
@@ -17,8 +16,7 @@ import javax.inject.Inject
  */
 @ActivityScope
 class LoginPresenter @Inject constructor(
-        private val repositoryManager: RepositoryManager,
-        private val errorHandler: ErrorHandler) : LoginContract.Presenter {
+        private val repositoryManager: RepositoryManager) : LoginContract.Presenter {
 
     var mView: LoginContract.View? = null
 
@@ -29,7 +27,7 @@ class LoginPresenter @Inject constructor(
     override fun login() {
         Observable.just(0)
                 .bindToLifecycle(mView as LifecycleProvider<*>)
-                .subscribe(object : AbstractErrorSubscriber<Int>(errorHandler) {
+                .subscribe(object : AbstractErrorSubscriber<Int>() {
                     override fun onSubscribe(d: Disposable) {
 
                     }
@@ -39,13 +37,13 @@ class LoginPresenter @Inject constructor(
                     }
 
                     override fun onNext(t: Int) {
-                        UIUtils.toast("成功")
+                       mView?.showMessage("成功")
                     }
                 })
 
     }
 
-    override fun onDestroy() {
+    override fun dropView() {
         mView = null
     }
 }

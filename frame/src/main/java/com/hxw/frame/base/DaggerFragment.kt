@@ -10,7 +10,7 @@ import dagger.internal.Beta
 import javax.inject.Inject
 
 /**
- * 使用注入的fragment基类
+ * 使用注入的Fragment基类
  * @author hxw
  * @date 2017/9/20
  */

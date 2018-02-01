@@ -7,6 +7,8 @@ import android.support.v4.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import com.hxw.frame.base.delegate.AppDelegate
+import com.hxw.frame.di.FrameComponent
 import com.trello.rxlifecycle2.LifecycleProvider
 import com.trello.rxlifecycle2.LifecycleTransformer
 import com.trello.rxlifecycle2.RxLifecycle
@@ -14,15 +16,13 @@ import com.trello.rxlifecycle2.android.FragmentEvent
 import com.trello.rxlifecycle2.android.RxLifecycleAndroid
 import io.reactivex.Observable
 import io.reactivex.subjects.BehaviorSubject
-import io.reactivex.subjects.Subject
 
 /**
- * fragment基类
+ * Fragment基类
  * @author hxw
  * @date 2017/8/30
  */
 abstract class BaseFragment : Fragment(), IFragment, LifecycleProvider<FragmentEvent> {
-    protected val TAG = this.javaClass.simpleName!!
     private val lifecycleSubject = BehaviorSubject.create<FragmentEvent>()
 
     @CheckResult
@@ -46,8 +46,8 @@ abstract class BaseFragment : Fragment(), IFragment, LifecycleProvider<FragmentE
         lifecycleSubject.onNext(FragmentEvent.CREATE)
     }
 
-    override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?, savedInstanceState: Bundle?): View? =
-            inflater?.inflate(getLayoutId(), container, false)
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View?
+            = inflater.inflate(getLayoutId(), container, false)
 
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -57,6 +57,7 @@ abstract class BaseFragment : Fragment(), IFragment, LifecycleProvider<FragmentE
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
+        componentInject(AppDelegate.FRAME_COMPONENT)
         init(savedInstanceState)
     }
 
@@ -93,5 +94,9 @@ abstract class BaseFragment : Fragment(), IFragment, LifecycleProvider<FragmentE
     override fun onDetach() {
         lifecycleSubject.onNext(FragmentEvent.DETACH)
         super.onDetach()
+    }
+
+    override fun componentInject(frameComponent: FrameComponent) {
+
     }
 }

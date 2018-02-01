@@ -3,11 +3,9 @@ package com.hxw.frame.di
 import android.app.Application
 import android.content.SharedPreferences
 import com.google.gson.Gson
-import com.hxw.frame.base.delegate.AppDelegate
 import com.hxw.frame.di.module.AppModule
 import com.hxw.frame.di.module.ClientModule
 import com.hxw.frame.di.module.GlobalConfigModule
-import com.hxw.frame.http.ErrorHandler
 import com.hxw.frame.imageloader.ImageLoader
 import com.hxw.frame.integration.RepositoryManager
 import dagger.Component
@@ -40,8 +38,6 @@ interface FrameComponent {
     fun cacheFile(): File
 
     fun imageLoader(): ImageLoader
-
-    fun errorHandler(): ErrorHandler
 
     //存放用户数据的SharedPreferences
     fun userSharedPreferences(): SharedPreferences

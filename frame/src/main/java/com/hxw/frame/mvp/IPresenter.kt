@@ -14,5 +14,5 @@ interface IPresenter<V> {
     /**
      * Drops the reference to the view when destroyed
      */
-    fun onDestroy()
+    fun dropView()
 }

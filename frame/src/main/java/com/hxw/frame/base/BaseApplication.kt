@@ -7,7 +7,7 @@ import com.hxw.frame.base.delegate.AppLifecycle
 import kotlin.properties.Delegates
 
 /**
- * 基类application,可以实现自己的application,把这里的代码复制过去就好
+ * 基类Application,可以实现自己的application,把这里的代码复制过去就好
  * @author hxw
  * @date 2017/8/19
  */

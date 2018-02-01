@@ -4,7 +4,7 @@ package com.hxw.frame.di.scope
 import javax.inject.Scope
 
 /**
- * fragment作用域
+ * Fragment作用域
  * @author hxw
  * @date 2017/8/30
  */

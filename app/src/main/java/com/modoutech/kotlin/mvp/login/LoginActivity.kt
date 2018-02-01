@@ -1,10 +1,13 @@
 package com.modoutech.kotlin.mvp.login
 
+import android.graphics.Color
 import android.os.Bundle
 import android.support.v7.content.res.AppCompatResources
 import com.hxw.frame.base.DaggerActivity
 import com.hxw.frame.imageloader.ImageLoader
+import com.hxw.frame.utils.SpanUtils
 import com.hxw.frame.utils.StringUtils
+import com.hxw.frame.utils.UIUtils
 import com.jakewharton.rxbinding2.view.RxView
 import com.modoutech.kotlin.R
 import com.trello.rxlifecycle2.kotlin.bindToLifecycle
@@ -32,11 +35,19 @@ class LoginActivity : DaggerActivity(), LoginContract.View {
                 .subscribe {
                     mPresenter.login()
                 }
-        val map=StringUtils.urlRequestFormat("http://172.16.8.94:8080/GetNearByArea?token=195184551&lat=27.974277&lon=120.7336")
+        val map = StringUtils.urlRequestFormat("http://172.16.8.94:8080/GetNearByArea?token=195184551&lat=27.974277&lon=120.7336")
+        tv_head.text = SpanUtils.newString("智能")
+                .setForegroundColor(Color.YELLOW)
+                .append("停车管理")
+                .setForegroundColor(Color.RED)
+                .setAbsoluteSize(10)
+                .append("系统")
+                .setBackgroundColor(Color.GRAY)
+                .create()
     }
 
     override fun showMessage(message: String) {
-
+        UIUtils.toast(message)
     }
 
     override fun launchActivity() {
@@ -49,7 +60,7 @@ class LoginActivity : DaggerActivity(), LoginContract.View {
     }
 
     override fun onDestroy() {
-        mPresenter.onDestroy()
         super.onDestroy()
+        mPresenter.dropView()
     }
 }

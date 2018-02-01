@@ -1,16 +1,20 @@
 package com.hxw.frame.integration
 
+import android.annotation.SuppressLint
 import android.app.Activity
 import android.content.Intent
 import com.hxw.frame.base.delegate.AppDelegate
 import java.util.*
+
 
 /**
  * APP的活动管理类
  * @author hxw
  * @date 2017/8/29
  */
+@SuppressLint("StaticFieldLeak")
 object AppManager {
+
     //当前在前台的activity
     private var mCurrentActivity: Activity? = null
     //管理所有activity
@@ -25,7 +29,6 @@ object AppManager {
         mCurrentActivity = currentActivity
     }
 
-
     /**
      * 获得当前在前台的activity
      */
@@ -35,11 +38,12 @@ object AppManager {
      * 获取位于栈顶的 activity,此方法不保证获取到的 acticity 正处于可见状态,即使 App 进入后台也会返回当前栈顶的 activity
      * 因此基本不会出现 null 的情况,比较适合大部分的使用场景,如 startActivity,Glide 加载图片
      */
-    fun getTopActivity() = if (!activityStack.empty()) {
-        activityStack.lastElement()
-    } else {
-        null
-    }
+    fun getTopActivity() =
+            if (!activityStack.empty()) {
+                activityStack.lastElement()
+            } else {
+                null
+            }
 
     /**
      * 添加Activity到集合
@@ -78,22 +82,21 @@ object AppManager {
      * 让在前台的activity,打开下一个activity
      */
     fun startActivity(intent: Intent) {
-        if (getTopActivity() == null) {
+        val activity = getTopActivity()
+        if (activity == null) {
             //如果没有前台的activity就使用new_task模式启动activity
             intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK
             AppDelegate.instance.startActivity(intent)
-
         } else {
-            getTopActivity()!!.startActivity(intent)
+            activity.startActivity(intent)
         }
     }
 
     /**
      * 关闭所有 activity
      */
-    fun killAll() {
+    private fun killAll() {
         activityStack.forEach {
-            activityStack.remove(it)
             it.finish()
         }
     }
@@ -107,7 +110,6 @@ object AppManager {
         val excludeList: List<Class<*>> = (excludeActivityClasses).asList()
         activityStack.forEach {
             if (!excludeList.contains(it.javaClass)) {
-                activityStack.remove(it)
                 it.finish()
             }
         }
