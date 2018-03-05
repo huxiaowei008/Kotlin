@@ -12,12 +12,14 @@ import com.hxw.frame.base.delegate.AppDelegate
 import com.hxw.frame.integration.AppManager
 import timber.log.Timber
 
+
 /**
  * UI界面工具类
  * @author hxw
  * @date 2017/8/19
  */
 object UIUtils {
+    private val mToast: Toast by lazy { Toast.makeText(AppDelegate.instance, "", Toast.LENGTH_SHORT) }
 
     @JvmStatic
     fun showSnackBar(message: String, duration: Int = Snackbar.LENGTH_SHORT) {
@@ -31,8 +33,9 @@ object UIUtils {
     }
 
     @JvmStatic
-    fun toast(message: String, duration: Int = Toast.LENGTH_SHORT) {
-        Toast.makeText(AppDelegate.instance, message, duration).show()
+    fun toast(message: String) {
+        mToast.setText(message)
+        mToast.show()
     }
 
     /**
@@ -50,6 +53,20 @@ object UIUtils {
         }
         //这是把状态栏顶上去,轻触下拉时会下来的,一些效果上可以参考
 //        activity.window.setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN)
+    }
+
+    /**
+     * 全屏,并且沉侵式状态栏
+     *
+     * @param activity
+     */
+    @JvmStatic
+    fun statuInScreen(activity: Activity) {
+        val attrs = activity.window.attributes
+        attrs.flags = attrs.flags and WindowManager.LayoutParams.FLAG_FULLSCREEN.inv()
+        activity.window.attributes = attrs
+        activity.window.addFlags(WindowManager.LayoutParams.FLAG_LAYOUT_IN_SCREEN)
+        activity.window.addFlags(WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS)
     }
 
     /**
