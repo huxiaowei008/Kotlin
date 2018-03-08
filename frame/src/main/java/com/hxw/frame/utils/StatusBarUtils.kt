@@ -62,11 +62,11 @@ object StatusBarUtils {
         }
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
             if (SystemUtils.isMIUI() && isMIUICustomStatusBarLightModeImpl()) {
-                return MIUISetStatusBarLightMode(activity.window, dark)
+                return setMIUIStatusBarDarkMode(activity.window, dark)
             } else if (SystemUtils.isFlyme()) {
-                return FlymeSetStatusBarLightMode(activity.window, dark)
+                return setFlymeStatusBarDarkMode(activity.window, dark)
             } else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-                Android6SetStatusBarLightMode(activity.window, dark)
+                setAndroid6StatusBarLightMode(activity.window, dark)
                 return true
             }
         }
@@ -78,7 +78,7 @@ object StatusBarUtils {
      * 见小米开发文档说明：https://dev.mi.com/console/doc/detail?pId=1159
      */
     private fun isMIUICustomStatusBarLightModeImpl(): Boolean {
-        return SystemUtils.isMIUIV5() || SystemUtils.isMIUIV6() ||
+        return SystemUtils.isMIUIV6() ||
                 SystemUtils.isMIUIV7() || SystemUtils.isMIUIV8()
     }
 
@@ -89,7 +89,7 @@ object StatusBarUtils {
      * @param dark   是否把状态栏字体及图标颜色设置为深色
      * @return boolean 成功执行返回 true
      */
-    private fun MIUISetStatusBarLightMode(window: Window, dark: Boolean): Boolean {
+    private fun setMIUIStatusBarDarkMode(window: Window, dark: Boolean): Boolean {
         var result = false
         val clazz = window.javaClass
         try {
@@ -104,8 +104,8 @@ object StatusBarUtils {
                 extraFlagField.invoke(window, 0, darkModeFlag)//清除黑色字体
             }
             result = true
-        } catch (ignored: Exception) {
-
+        } catch (e: Exception) {
+            e.printStackTrace()
         }
 
         return result
@@ -119,10 +119,10 @@ object StatusBarUtils {
      * @param dark   是否把状态栏字体及图标颜色设置为深色
      * @return boolean 成功执行返回true
      */
-    private fun FlymeSetStatusBarLightMode(window: Window, dark: Boolean): Boolean {
+    private fun setFlymeStatusBarDarkMode(window: Window, dark: Boolean): Boolean {
 
         // flyme 在 6.2.0.0A 支持了 Android 官方的实现方案，旧的方案失效
-        Android6SetStatusBarLightMode(window, dark)
+        setAndroid6StatusBarLightMode(window, dark)
 
         var result = false
         try {
@@ -143,8 +143,8 @@ object StatusBarUtils {
             meizuFlags.setInt(lp, value)
             window.attributes = lp
             result = true
-        } catch (ignored: Exception) {
-
+        } catch (e: Exception) {
+            e.printStackTrace()
         }
 
         return result
@@ -158,7 +158,7 @@ object StatusBarUtils {
      * @return boolean 成功执行返回true
      */
     @TargetApi(23)
-    private fun Android6SetStatusBarLightMode(window: Window, dark: Boolean): Boolean {
+    private fun setAndroid6StatusBarLightMode(window: Window, dark: Boolean): Boolean {
         val decorView = window.decorView
         var systemUi = if (dark) View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR else View.SYSTEM_UI_FLAG_LAYOUT_STABLE
         systemUi = changeStatusBarModeRetainFlag(window, systemUi)

@@ -55,8 +55,6 @@ object SystemUtils {
      */
     fun isMIUI(): Boolean = !TextUtils.isEmpty(sMiuiVersionName)
 
-    fun isMIUIV5(): Boolean = "v5" == sMiuiVersionName
-
     fun isMIUIV6(): Boolean = "v6" == sMiuiVersionName
 
     fun isMIUIV7(): Boolean = "v7" == sMiuiVersionName
