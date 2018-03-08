@@ -66,7 +66,7 @@ object StatusBarUtils {
             } else if (SystemUtils.isFlyme()) {
                 return setFlymeStatusBarDarkMode(activity.window, dark)
             } else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-                setAndroid6StatusBarLightMode(activity.window, dark)
+                setAndroid6StatusBarDarkMode(activity.window, dark)
                 return true
             }
         }
@@ -122,7 +122,7 @@ object StatusBarUtils {
     private fun setFlymeStatusBarDarkMode(window: Window, dark: Boolean): Boolean {
 
         // flyme 在 6.2.0.0A 支持了 Android 官方的实现方案，旧的方案失效
-        setAndroid6StatusBarLightMode(window, dark)
+        setAndroid6StatusBarDarkMode(window, dark)
 
         var result = false
         try {
@@ -158,7 +158,7 @@ object StatusBarUtils {
      * @return boolean 成功执行返回true
      */
     @TargetApi(23)
-    private fun setAndroid6StatusBarLightMode(window: Window, dark: Boolean): Boolean {
+    private fun setAndroid6StatusBarDarkMode(window: Window, dark: Boolean): Boolean {
         val decorView = window.decorView
         var systemUi = if (dark) View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR else View.SYSTEM_UI_FLAG_LAYOUT_STABLE
         systemUi = changeStatusBarModeRetainFlag(window, systemUi)
@@ -178,6 +178,26 @@ object StatusBarUtils {
         return out1
     }
 
+    /**
+     * Android 状态栏设置为白底黑字 6+(参考)
+     * @param activity
+     * @param dark
+     */
+    @JvmStatic
+    fun setStatusBarMode(activity: Activity, dark: Boolean) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            val decorView = activity.window.decorView
+            if (decorView != null) {
+                var vis = decorView.systemUiVisibility
+                vis = if (dark) {
+                    vis or View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR
+                } else {
+                    vis and View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR.inv()
+                }
+                decorView.systemUiVisibility = vis
+            }
+        }
+    }
     private fun retainSystemUiFlag(window: Window, out: Int, type: Int): Int {
         var out1 = out
         val now = window.decorView.systemUiVisibility
