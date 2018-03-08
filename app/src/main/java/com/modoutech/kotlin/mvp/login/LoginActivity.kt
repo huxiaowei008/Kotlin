@@ -6,6 +6,7 @@ import android.support.v7.content.res.AppCompatResources
 import com.hxw.frame.base.DaggerActivity
 import com.hxw.frame.imageloader.ImageLoader
 import com.hxw.frame.utils.SpanUtils
+import com.hxw.frame.utils.StatusBarUtils
 import com.hxw.frame.utils.StringUtils
 import com.hxw.frame.utils.UIUtils
 import com.jakewharton.rxbinding2.view.RxView
@@ -30,10 +31,15 @@ class LoginActivity : DaggerActivity(), LoginContract.View {
         cb_keep.buttonDrawable = AppCompatResources.getDrawable(this, R.drawable.check_box_selector)
 //        btn_login.setOnClickListener { mPresenter.login() }
         imageLoader.displayRes(img_logo, R.mipmap.ic_launcher)
+
+        cb_keep.setOnCheckedChangeListener { buttonView, isChecked ->
+            StatusBarUtils.setStatusBarDarkMode(this,isChecked)
+        }
         RxView.clicks(btn_login)
                 .bindToLifecycle(this)//rxlifecycle的使用
                 .subscribe {
                     mPresenter.login()
+
                 }
         val map = StringUtils.urlRequestFormat("http://172.16.8.94:8080/GetNearByArea?token=195184551&lat=27.974277&lon=120.7336")
         tv_head.text = SpanUtils.newString("智能")

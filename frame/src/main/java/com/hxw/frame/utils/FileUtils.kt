@@ -2,7 +2,9 @@ package com.hxw.frame.utils
 
 import android.content.Context
 import android.os.Environment
+import java.io.Closeable
 import java.io.File
+import java.io.IOException
 
 /**
  * 文件相关工具类
@@ -52,4 +54,16 @@ object FileUtils {
      */
     @JvmStatic
     fun isFileExists(file: File?) = file != null && file.exists()
+
+    @JvmStatic
+    fun close(c: Closeable?) {
+        if (c != null) {
+            try {
+                c.close()
+            } catch (e: IOException) {
+                e.printStackTrace()
+            }
+
+        }
+    }
 }

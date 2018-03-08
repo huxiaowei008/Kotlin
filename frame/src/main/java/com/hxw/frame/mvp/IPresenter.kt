@@ -1,6 +1,7 @@
 package com.hxw.frame.mvp
 
 /**
+ * presenter基接口
  * @author hxw
  * @date 2017/9/15
  */

@@ -42,7 +42,7 @@ dependencies {
     })
     implementation 'com.android.support.constraint:constraint-layout:1.0.2'
     testImplementation 'junit:junit:4.12'
-    api project(':frame')
+    implementation project(':frame')
 
     kapt rootProject.ext.dependencies["dagger-compiler"]
     kapt rootProject.ext.dependencies["dagger-android-processor"]

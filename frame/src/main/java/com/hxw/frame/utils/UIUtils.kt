@@ -39,37 +39,6 @@ object UIUtils {
     }
 
     /**
-     * 沉浸式状态栏
-     */
-    @JvmStatic
-    fun noStatusBar(activity: Activity) {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            activity.window.statusBarColor = Color.TRANSPARENT
-            activity.window.decorView.systemUiVisibility =
-                    View.SYSTEM_UI_FLAG_LAYOUT_STABLE or View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
-        } else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
-            activity.window.setFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS,
-                    WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS)
-        }
-        //这是把状态栏顶上去,轻触下拉时会下来的,一些效果上可以参考
-//        activity.window.setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN)
-    }
-
-    /**
-     * 全屏,并且沉侵式状态栏
-     *
-     * @param activity
-     */
-    @JvmStatic
-    fun statuInScreen(activity: Activity) {
-        val attrs = activity.window.attributes
-        attrs.flags = attrs.flags and WindowManager.LayoutParams.FLAG_FULLSCREEN.inv()
-        activity.window.attributes = attrs
-        activity.window.addFlags(WindowManager.LayoutParams.FLAG_LAYOUT_IN_SCREEN)
-        activity.window.addFlags(WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS)
-    }
-
-    /**
      * dp转px
      *
      * @param dpValue dp值

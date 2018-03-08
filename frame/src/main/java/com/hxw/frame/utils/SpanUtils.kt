@@ -8,6 +8,7 @@ import android.text.style.BackgroundColorSpan
 import android.text.style.ForegroundColorSpan
 
 /**
+ * 字符组合变换工具
  * @author hxw
  * @date 2018/1/5.
  */
