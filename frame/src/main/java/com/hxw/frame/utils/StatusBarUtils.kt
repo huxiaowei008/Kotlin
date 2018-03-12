@@ -16,6 +16,15 @@ import android.view.WindowManager
  */
 object StatusBarUtils {
 
+    @JvmStatic
+    fun setStatusBarVisibility(activity: Activity, isVisible: Boolean) {
+        if (isVisible) {
+            activity.window.clearFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN)
+        } else {
+            activity.window.addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN)
+        }
+    }
+
     /**
      * 沉浸式状态栏
      */
@@ -198,6 +207,7 @@ object StatusBarUtils {
             }
         }
     }
+
     private fun retainSystemUiFlag(window: Window, out: Int, type: Int): Int {
         var out1 = out
         val now = window.decorView.systemUiVisibility
