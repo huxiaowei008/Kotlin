@@ -15,7 +15,9 @@ import android.view.WindowManager
  * @date 2018/3/8.
  */
 object StatusBarUtils {
-
+    /**
+     * 设置状态栏是否可见
+     */
     @JvmStatic
     fun setStatusBarVisibility(activity: Activity, isVisible: Boolean) {
         if (isVisible) {
