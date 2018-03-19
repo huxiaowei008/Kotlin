@@ -11,19 +11,19 @@ object MemoryConstants {
     /**
      * Byte与Byte的倍数
      */
-    const val BYTE = 1L
+    const val BYTE = 1
     /**
      * KB与Byte的倍数
      */
-    const val KB = 1_024L
+    const val KB = 1_024
     /**
      * MB与Byte的倍数
      */
-    const val MB = 1_048_576L
+    const val MB = 1_048_576
     /**
      * GB与Byte的倍数
      */
-    const val GB = 1_073_741_824L
+    const val GB = 1_073_741_824
 
     @IntDef(BYTE, KB, MB, GB)
     @Retention(AnnotationRetention.SOURCE)

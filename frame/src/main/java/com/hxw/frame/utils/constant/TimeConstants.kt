@@ -11,23 +11,23 @@ object TimeConstants {
     /**
      * 毫秒与毫秒的倍数
      */
-    const val MSEC = 1L
+    const val MSEC = 1
     /**
      * 秒与毫秒的倍数
      */
-    const val SEC = 1_000L
+    const val SEC = 1_000
     /**
      * 分与毫秒的倍数
      */
-    const val MIN = 60_000L
+    const val MIN = 60_000
     /**
      * 时与毫秒的倍数
      */
-    const val HOUR = 3_600_000L
+    const val HOUR = 3_600_000
     /**
      * 天与毫秒的倍数
      */
-    const val DAY = 86_400_000L
+    const val DAY = 86_400_000
 
     @IntDef(MSEC, SEC, MIN, HOUR, DAY)
     @Retention(AnnotationRetention.SOURCE)

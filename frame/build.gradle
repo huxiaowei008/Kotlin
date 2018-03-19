@@ -39,6 +39,8 @@ dependencies {
     testImplementation 'junit:junit:4.12'
     //Kotlin
     api "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
+    api rootProject.ext.dependencies["ktx"]
+
     api rootProject.ext.dependencies["appcompat"]
     api rootProject.ext.dependencies["design"]
     api rootProject.ext.dependencies["support-v4"]
