@@ -166,31 +166,7 @@ object DateUtils {
      * EEEE 'DATE('yyyy-MM-dd')' 'TIME('HH:mm:ss')' zzzz    星期五 DATE(2016-08-12) TIME(15:44:40) 中国标准时间
      * </pre>
      * 注意：SimpleDateFormat不是线程安全的，线程安全需用{@code ThreadLocal<SimpleDateFormat>}
-     */
-
-    /**
-     * 将Date类型转为时间字符串
-     * <p>格式为pattern</p>
-     *
-     * @param date    Date类型时间
-     * @param pattern 时间格式
-     * @return 时间字符串
-     */
-    @JvmStatic
-    fun date2String(date: Date, pattern: String = "yyyy-MM-dd HH:mm:ss") =
-            SimpleDateFormat(pattern, Locale.getDefault()).format(date)
-
-    /**
-     * 将时间字符串转为Date类型
-     * <p>time格式为pattern</p>
-     *
-     * @param time    时间字符串
-     * @param pattern 时间格式
-     * @return Date类型
-     */
-    @JvmStatic
-    fun string2Date(time: String, pattern: String = "yyyy-MM-dd HH:mm:ss") =
-            SimpleDateFormat(pattern, Locale.getDefault()).parse(time)
+     *//*******************************************************************************************************/
 
     /**
      * 获取当前毫秒时间戳
@@ -261,3 +237,27 @@ object DateUtils {
         return cal.get(Calendar.WEEK_OF_MONTH)
     }
 }
+
+/**
+ * 将Date类型转为时间字符串
+ * <p>格式为pattern</p>
+ *
+ * @param date    Date类型时间
+ * @param pattern 时间格式
+ * @return 时间字符串
+ */
+
+fun Date.date2String(pattern: String = "yyyy-MM-dd HH:mm:ss") =
+        SimpleDateFormat(pattern, Locale.getDefault()).format(this)
+
+/**
+ * 将时间字符串转为Date类型
+ * <p>time格式为pattern</p>
+ *
+ * @param time    时间字符串
+ * @param pattern 时间格式
+ * @return Date类型
+ */
+
+fun String.string2Date(pattern: String = "yyyy-MM-dd HH:mm:ss") =
+        SimpleDateFormat(pattern, Locale.getDefault()).parse(this)
