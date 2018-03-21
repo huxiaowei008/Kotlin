@@ -10,21 +10,21 @@ import android.content.Context
  */
 object AppUtils {
 
-    @JvmStatic
-    fun getVersionCode(context: Context): Int = try {
-        val info = context.packageManager.getPackageInfo(context.packageName, 0)
-        info.versionCode
-    } catch (e: Exception) {
-        e.printStackTrace()
-        0
-    }
+}
 
-    @JvmStatic
-    fun getVersionName(context: Context): String = try {
-        val info = context.packageManager.getPackageInfo(context.packageName, 0)
-        info.versionName
-    } catch (e: Exception) {
-        e.printStackTrace()
-        ""
-    }
+fun Context.getVersionCode(): Int = try {
+    val info = this.packageManager.getPackageInfo(this.packageName, 0)
+    info.versionCode
+} catch (e: Exception) {
+    e.printStackTrace()
+    0
+}
+
+
+fun Context.getVersionName(): String = try {
+    val info = this.packageManager.getPackageInfo(this.packageName, 0)
+    info.versionName
+} catch (e: Exception) {
+    e.printStackTrace()
+    ""
 }

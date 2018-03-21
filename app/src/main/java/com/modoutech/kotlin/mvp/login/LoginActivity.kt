@@ -5,10 +5,7 @@ import android.os.Bundle
 import android.support.v7.content.res.AppCompatResources
 import com.hxw.frame.base.DaggerActivity
 import com.hxw.frame.imageloader.ImageLoader
-import com.hxw.frame.utils.SpanUtils
-import com.hxw.frame.utils.StatusBarUtils
-import com.hxw.frame.utils.StringUtils
-import com.hxw.frame.utils.UIUtils
+import com.hxw.frame.utils.*
 import com.jakewharton.rxbinding2.view.RxView
 import com.modoutech.kotlin.R
 import com.trello.rxlifecycle2.kotlin.bindToLifecycle
@@ -21,8 +18,10 @@ import javax.inject.Inject
  */
 class LoginActivity : DaggerActivity(), LoginContract.View {
 
-    @Inject lateinit var mPresenter: LoginContract.Presenter
-    @Inject lateinit var imageLoader: ImageLoader
+    @Inject
+    lateinit var mPresenter: LoginContract.Presenter
+    @Inject
+    lateinit var imageLoader: ImageLoader
 
     override fun getLayoutId(): Int = R.layout.activity_login
 
@@ -33,7 +32,7 @@ class LoginActivity : DaggerActivity(), LoginContract.View {
         imageLoader.displayRes(img_logo, R.mipmap.ic_launcher)
 
         cb_keep.setOnCheckedChangeListener { buttonView, isChecked ->
-            StatusBarUtils.setStatusBarDarkMode(this,isChecked)
+            StatusBarUtils.setStatusBarDarkMode(this, isChecked)
         }
         RxView.clicks(btn_login)
                 .bindToLifecycle(this)//rxlifecycle的使用
@@ -53,7 +52,8 @@ class LoginActivity : DaggerActivity(), LoginContract.View {
     }
 
     override fun showMessage(message: String) {
-        UIUtils.toast(message)
+        UIUtils.toast(getVersionName())
+
     }
 
     override fun launchActivity() {
