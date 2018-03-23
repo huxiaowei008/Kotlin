@@ -166,7 +166,8 @@ object DateUtils {
      * EEEE 'DATE('yyyy-MM-dd')' 'TIME('HH:mm:ss')' zzzz    星期五 DATE(2016-08-12) TIME(15:44:40) 中国标准时间
      * </pre>
      * 注意：SimpleDateFormat不是线程安全的，线程安全需用{@code ThreadLocal<SimpleDateFormat>}
-     *//*******************************************************************************************************/
+     */
+    /*******************************************************************************************************/
 
     /**
      * 获取当前毫秒时间戳
@@ -214,28 +215,6 @@ object DateUtils {
     @JvmStatic
     fun isLeapYear(year: Int) = (year % 4 == 0 && year % 100 != 0) || year % 400 == 0
 
-    /**
-     * 获取星期
-     *
-     * @param date Date类型时间
-     * @return 星期
-     */
-    @JvmStatic
-    fun getWeek(date: Date) = SimpleDateFormat("EEEE", Locale.getDefault()).format(date)
-
-    /**
-     * 获取月份中的第几周
-     * <p>注意：国外周日才是新的一周的开始</p>
-     *
-     * @param date Date类型时间
-     * @return 1...5
-     */
-    @JvmStatic
-    fun getWeekOfMonth(date: Date): Int {
-        val cal = Calendar.getInstance()
-        cal.time = date
-        return cal.get(Calendar.WEEK_OF_MONTH)
-    }
 }
 
 /**
@@ -246,7 +225,6 @@ object DateUtils {
  * @param pattern 时间格式
  * @return 时间字符串
  */
-
 fun Date.date2String(pattern: String = "yyyy-MM-dd HH:mm:ss") =
         SimpleDateFormat(pattern, Locale.getDefault()).format(this)
 
@@ -258,6 +236,27 @@ fun Date.date2String(pattern: String = "yyyy-MM-dd HH:mm:ss") =
  * @param pattern 时间格式
  * @return Date类型
  */
-
 fun String.string2Date(pattern: String = "yyyy-MM-dd HH:mm:ss") =
         SimpleDateFormat(pattern, Locale.getDefault()).parse(this)
+
+
+/**
+ * 获取星期
+ *
+ * @param date Date类型时间
+ * @return 星期
+ */
+fun Date.getWeek() = SimpleDateFormat("EEEE", Locale.getDefault()).format(this)
+
+/**
+ * 获取月份中的第几周
+ * <p>注意：国外周日才是新的一周的开始</p>
+ *
+ * @param date Date类型时间
+ * @return 1...5
+ */
+fun Date.getWeekOfMonth(): Int {
+    val cal = Calendar.getInstance()
+    cal.time = this
+    return cal.get(Calendar.WEEK_OF_MONTH)
+}

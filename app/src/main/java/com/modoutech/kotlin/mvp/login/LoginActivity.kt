@@ -32,7 +32,7 @@ class LoginActivity : DaggerActivity(), LoginContract.View {
         imageLoader.displayRes(img_logo, R.mipmap.ic_launcher)
 
         cb_keep.setOnCheckedChangeListener { buttonView, isChecked ->
-            StatusBarUtils.setStatusBarDarkMode(this, isChecked)
+            setStatusBarDarkMode(isChecked)
         }
         RxView.clicks(btn_login)
                 .bindToLifecycle(this)//rxlifecycle的使用
@@ -40,7 +40,7 @@ class LoginActivity : DaggerActivity(), LoginContract.View {
                     mPresenter.login()
 
                 }
-        val map = StringUtils.urlRequestFormat("http://172.16.8.94:8080/GetNearByArea?token=195184551&lat=27.974277&lon=120.7336")
+        val map = "http://172.16.8.94:8080/GetNearByArea?token=195184551&lat=27.974277&lon=120.7336".urlRequestFormat()
         tv_head.text = SpanUtils.newString("智能")
                 .setForegroundColor(Color.YELLOW)
                 .append("停车管理")
@@ -52,7 +52,8 @@ class LoginActivity : DaggerActivity(), LoginContract.View {
     }
 
     override fun showMessage(message: String) {
-        UIUtils.toast(getVersionName())
+        val t = et_username.text.toString()
+        UIUtils.toast("${t.isZh()}")
 
     }
 

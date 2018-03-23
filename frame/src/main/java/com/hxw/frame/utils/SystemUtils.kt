@@ -38,7 +38,7 @@ object SystemUtils {
         } catch (e: Exception) {
             e.printStackTrace()
         } finally {
-            FileUtils.close(fileInputStream)
+            fileInputStream?.close()
         }
     }
 

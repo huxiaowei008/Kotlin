@@ -15,29 +15,28 @@ import android.view.WindowManager
  * @date 2018/3/8.
  */
 object StatusBarUtils {
+}
     /**
      * 设置状态栏是否可见
      */
-    @JvmStatic
-    fun setStatusBarVisibility(activity: Activity, isVisible: Boolean) {
+    fun Activity.setStatusBarVisibility(isVisible: Boolean) {
         if (isVisible) {
-            activity.window.clearFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN)
+            this.window.clearFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN)
         } else {
-            activity.window.addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN)
+            this.window.addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN)
         }
     }
 
     /**
      * 沉浸式状态栏
      */
-    @JvmStatic
-    fun noStatusBar(activity: Activity) {
+    fun Activity.noStatusBar() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            activity.window.statusBarColor = Color.TRANSPARENT
-            activity.window.decorView.systemUiVisibility =
+            this.window.statusBarColor = Color.TRANSPARENT
+            this.window.decorView.systemUiVisibility =
                     View.SYSTEM_UI_FLAG_LAYOUT_STABLE or View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
         } else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
-            activity.window.setFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS,
+            this.window.setFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS,
                     WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS)
         }
         //这是把状态栏顶上去,轻触下拉时会下来的,一些效果上可以参考
@@ -49,13 +48,12 @@ object StatusBarUtils {
      *
      * @param activity
      */
-    @JvmStatic
-    fun statuInScreen(activity: Activity) {
-        val attrs = activity.window.attributes
+    fun Activity.statuInScreen() {
+        val attrs = this.window.attributes
         attrs.flags = attrs.flags and WindowManager.LayoutParams.FLAG_FULLSCREEN.inv()
-        activity.window.attributes = attrs
-        activity.window.addFlags(WindowManager.LayoutParams.FLAG_LAYOUT_IN_SCREEN)
-        activity.window.addFlags(WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS)
+        this.window.attributes = attrs
+        this.window.addFlags(WindowManager.LayoutParams.FLAG_LAYOUT_IN_SCREEN)
+        this.window.addFlags(WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS)
     }
 
     /**
@@ -64,8 +62,7 @@ object StatusBarUtils {
      *
      * @param activity 需要被处理的 Activity
      */
-    @JvmStatic
-    fun setStatusBarDarkMode(@NonNull activity: Activity, dark: Boolean): Boolean {
+    fun Activity.setStatusBarDarkMode(dark: Boolean): Boolean {
 
         // 无语系列：ZTK C2016只能时间和电池图标变色。。。。
         if (SystemUtils.isZTKC2016()) {
@@ -73,11 +70,11 @@ object StatusBarUtils {
         }
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
             if (SystemUtils.isMIUI() && isMIUICustomStatusBarLightModeImpl()) {
-                return setMIUIStatusBarDarkMode(activity.window, dark)
+                return setMIUIStatusBarDarkMode(this.window, dark)
             } else if (SystemUtils.isFlyme()) {
-                return setFlymeStatusBarDarkMode(activity.window, dark)
+                return setFlymeStatusBarDarkMode(this.window, dark)
             } else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-                setAndroid6StatusBarDarkMode(activity.window, dark)
+                setAndroid6StatusBarDarkMode(this.window, dark)
                 return true
             }
         }
@@ -194,10 +191,9 @@ object StatusBarUtils {
      * @param activity
      * @param dark
      */
-    @JvmStatic
-    fun setStatusBarMode(activity: Activity, dark: Boolean) {
+    fun Activity.setStatusBarMode(dark: Boolean) {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-            val decorView = activity.window.decorView
+            val decorView = this.window.decorView
             if (decorView != null) {
                 var vis = decorView.systemUiVisibility
                 vis = if (dark) {
@@ -218,4 +214,3 @@ object StatusBarUtils {
         }
         return out1
     }
-}

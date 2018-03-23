@@ -15,6 +15,7 @@ import com.hxw.frame.integration.ConfigModule
 import com.hxw.frame.utils.NullStringToEmptyFactory
 import com.hxw.frame.utils.StatusBarUtils
 import com.hxw.frame.utils.UIUtils
+import com.hxw.frame.utils.noStatusBar
 import com.modoutech.kotlin.BuildConfig
 import timber.log.Timber
 
@@ -58,7 +59,7 @@ class GlobalConfiguration : ConfigModule {
         lifecycle.add(object : BaseActivityLifecycleCallbacks() {
             override fun onActivityCreated(activity: Activity, savedInstanceState: Bundle?) {
                 super.onActivityCreated(activity, savedInstanceState)
-                StatusBarUtils.noStatusBar(activity)
+                activity.noStatusBar()
             }
         })
     }

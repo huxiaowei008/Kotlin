@@ -3,7 +3,7 @@ package com.hxw.frame.di.module
 import android.app.Application
 import com.hxw.frame.imageloader.IImageLoader
 import com.hxw.frame.imageloader.glide.GlideLoader
-import com.hxw.frame.utils.FileUtils
+import com.hxw.frame.utils.getCacheFile
 import dagger.Module
 import dagger.Provides
 import okhttp3.HttpUrl
@@ -31,7 +31,7 @@ class GlobalConfigModule(builder: Builder) {
 
     @Singleton
     @Provides
-    fun provideCacheFile(application: Application) = cacheFile ?: FileUtils.getCacheFile(application)
+    fun provideCacheFile(application: Application) = cacheFile ?: application.getCacheFile()
 
     @Singleton
     @Provides
