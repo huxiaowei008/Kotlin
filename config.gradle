@@ -1,10 +1,10 @@
 ext {
-    compileSdkVersion = 26
+    compileSdkVersion = 27
     minSdkVersion = 14
-    targetSdkVersion = 26
+    targetSdkVersion = 27
     versionCode = 3
     versionName = "1.0.2"
-    def supportVersion = "27.1.0"
+    def supportVersion = "27.1.1"
     def rxlifecycle2Version = "2.2.1"
     def rxbinding2Version = "2.1.1"
     def daggerVersion = "2.15"
@@ -82,7 +82,7 @@ ext {
             "okhttp-interceptor"                   : 'com.squareup.okhttp3:logging-interceptor:3.10.0',
 
             //timber https://github.com/JakeWharton/timber
-            "timber"                               : 'com.jakewharton.timber:timber:4.6.1',
+            "timber"                               : 'com.jakewharton.timber:timber:4.7.0',
 
             //glide图片加载 https://github.com/bumptech/glide
             "glide"                                : 'com.github.bumptech.glide:glide:4.6.1',
