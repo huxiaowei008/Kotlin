@@ -42,7 +42,7 @@ object UIUtils {
  * @return px值
  */
 fun Context.dpToPx(dpValue: Float): Int {
-    val scale = this.resources.displayMetrics.scaledDensity
+    val scale = this.resources.displayMetrics.density
     return (dpValue * scale + 0.5f).toInt()
 }
 
