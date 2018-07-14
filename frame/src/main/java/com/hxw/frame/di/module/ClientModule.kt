@@ -6,6 +6,7 @@ import com.google.gson.Gson
 import com.google.gson.GsonBuilder
 import com.hxw.frame.integration.RepositoryManager
 import com.hxw.frame.utils.StringUtils
+import com.hxw.frame.utils.jsonFormat
 import dagger.Module
 import dagger.Provides
 import okhttp3.HttpUrl
@@ -79,7 +80,7 @@ class ClientModule {
             var str = it
             if ((it.startsWith("{") && it.endsWith("}")) ||
                     (it.startsWith("[") && it.endsWith("]"))) {
-                str = StringUtils.jsonFormat(it)
+                str = it.jsonFormat()
             }
             Timber.tag("OkHttp").d(str)
         })
