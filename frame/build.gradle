@@ -1,107 +1,34 @@
 apply plugin: 'com.android.library'
-apply plugin: 'kotlin-android'//用于编译Android代码
-apply plugin: 'kotlin-android-extensions'//用于扩展绑定关系,通俗讲就是直接使用xml中的id
-apply plugin: 'kotlin-kapt'//那些注释处理需要用这个,就是annotationProcessor替换成kapt
+
 android {
-    compileSdkVersion rootProject.compileSdkVersion
+    compileSdkVersion 27
+
+
 
     defaultConfig {
-        minSdkVersion rootProject.minSdkVersion
-        targetSdkVersion rootProject.targetSdkVersion
-        versionCode rootProject.versionCode
-        versionName rootProject.versionName
+        minSdkVersion 16
+        targetSdkVersion 27
+        versionCode 1
+        versionName "1.0"
 
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
 
     }
+
     buildTypes {
-        debug {
-            minifyEnabled false
-            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
-        }
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
-    sourceSets {
-        main.java.srcDirs += 'src/main/kotlin'
-    }
+
 }
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
+
+    implementation 'com.android.support:appcompat-v7:27.1.1'
     testImplementation 'junit:junit:4.12'
-    androidTestImplementation 'com.android.support.test:runner:1.0.1'
-    androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.1'
-    //Kotlin
-    api "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
-    api rootProject.ext.dependencies["ktx"]
-
-    api rootProject.ext.dependencies["appcompat"]
-    api rootProject.ext.dependencies["design"]
-    api rootProject.ext.dependencies["support-v4"]
-    api rootProject.ext.dependencies["cardview-v7"]
-    api rootProject.ext.dependencies["recyclerview-v7"]
-    api rootProject.ext.dependencies["support-annotations"]
-    api rootProject.ext.dependencies["support-vector-drawable"]
-    compileOnly rootProject.ext.dependencies["javax.annotation"]
-
-    //retrofit https://github.com/square/retrofit
-    api rootProject.ext.dependencies["retrofit"]
-    api rootProject.ext.dependencies["converter-gson"]
-    api rootProject.ext.dependencies["adapter-rxjava2"]
-
-    //Gson https://github.com/google/gson
-    api rootProject.ext.dependencies["gson"]
-
-    //okHttp https://github.com/square/okhttp
-    api rootProject.ext.dependencies["okhttp"]
-    api rootProject.ext.dependencies["okhttp-interceptor"]
-
-    //timber https://github.com/JakeWharton/timber
-    api rootProject.ext.dependencies["timber"]
-
-    //glide图片加载 https://github.com/bumptech/glide
-    api rootProject.ext.dependencies["glide"]
-    api rootProject.ext.dependencies["glide.okhttp3"]
-    kapt rootProject.ext.dependencies["glide.compiler"]
-
-//    示例代码：
-//    为了更好地控制，你也可以从 okhttp-integration 库中排除过渡依赖：
-//
-//    implementation (com.github.bumptech.glide:okhttp-integration:4.4.0) {
-//        exclude group: com.squareup.okhttp3, module: okhttp
-//    }
-//    或你可以简单地排除所有 okhttp-integration 库的所有过渡依赖：
-//
-//    implementation (com.github.bumptech.glide:okhttp-integration:4.4.0) {
-//        transitive = false
-//    }
-
-    //RxKotlin https://github.com/ReactiveX/RxKotlin
-    api rootProject.ext.dependencies["rxkotlin2"]
-
-    //RxAndroid https://github.com/ReactiveX/RxAndroid/tree/2.x
-    api rootProject.ext.dependencies["rxandroid2"]
-
-    //RxLifecycle https://github.com/trello/RxLifecycle/tree/2.x
-    api rootProject.ext.dependencies["rxlifecycle2-kotlin"]
-    api rootProject.ext.dependencies["rxlifecycle2-android-lifecycle-kotlin"]
-
-    //RxBinding https://github.com/JakeWharton/RxBinding
-    api rootProject.ext.dependencies["rxbinding2-kotlin"]
-    api rootProject.ext.dependencies["rxbinding2-support-v4-kotlin"]
-    api rootProject.ext.dependencies["rxbinding2-appcompat-v7-kotlin"]
-    api rootProject.ext.dependencies["rxbinding2-design-kotlin"]
-    api rootProject.ext.dependencies["rxbinding2-recyclerview-v7-kotlin"]
-
-    //dagger2 https://github.com/google/dagger
-    api rootProject.ext.dependencies["dagger"]
-    kapt rootProject.ext.dependencies["dagger-compiler"]
-    api rootProject.ext.dependencies["dagger-android"]
-    api rootProject.ext.dependencies["dagger-android-support"]
-    kapt rootProject.ext.dependencies["dagger-android-processor"]
+    androidTestImplementation 'com.android.support.test:runner:1.0.2'
+    androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
 }
-//需要放在这,放上面会出问题 Error:Cause: android.compileSdkVersion is missing!
-apply from: 'bintray.gradle'
