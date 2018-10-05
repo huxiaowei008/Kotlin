@@ -19,9 +19,9 @@
         </activity>
 
         <!-- 框架配置 -->
-        <meta-data
-            android:name="com.modoutech.kotlin.base.GlobalConfiguration"
-            android:value="ConfigModule" />
+        <!--<meta-data-->
+            <!--android:name="com.modoutech.kotlin.base.GlobalConfiguration"-->
+            <!--android:value="ConfigModule" />-->
     </application>
 
 </manifest>
