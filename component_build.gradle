@@ -3,43 +3,37 @@ if (isBuildModule.toBoolean()) {
 } else {
     apply plugin: 'com.android.library'
 }
-apply plugin: 'com.jakewharton.butterknife'
-
+apply plugin: 'kotlin-android'//用于编译Android代码
+apply plugin: 'kotlin-android-extensions'//用于扩展绑定关系,通俗讲就是直接使用xml中的id
+apply plugin: 'kotlin-kapt'//那些注释处理需要用这个,就是annotationProcessor替换成kapt
+apply plugin: 'android-aspectjx'
 android {
-    compileSdkVersion rootProject.ext.android["compileSdkVersion"]
-    buildToolsVersion rootProject.ext.android["buildToolsVersion"]
-    useLibrary 'org.apache.http.legacy'
+    compileSdkVersion config.target_sdk
 
-    compileOptions {
-        targetCompatibility JavaVersion.VERSION_1_8
-        sourceCompatibility JavaVersion.VERSION_1_8
-    }
 
     defaultConfig {
-        minSdkVersion rootProject.ext.android["minSdkVersion"]
-        targetSdkVersion rootProject.ext.android["targetSdkVersion"]
-        versionCode rootProject.ext.android["versionCode"]
-        versionName rootProject.ext.android["versionName"]
-        testInstrumentationRunner rootProject.ext.dependencies["androidJUnitRunner"]
-        javaCompileOptions {
-            annotationProcessorOptions {
-                arguments = [moduleName: project.getName()]
-                includeCompileClasspath true
-            }
-        }
+        minSdkVersion config.min_sdk
+        targetSdkVersion config.target_sdk
+        versionCode config.version_code
+        versionName config.version_name
+
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+
+//        javaCompileOptions {
+//            annotationProcessorOptions {
+//                arguments = [moduleName: project.getName()]
+////                includeCompileClasspath true
+//            }
+//        }
     }
     buildTypes {
         debug {
-            buildConfigField "boolean", "LOG_DEBUG", "true"
-            buildConfigField "boolean", "USE_CANARY", "true"
             buildConfigField "boolean", "IS_BUILD_MODULE", "${isBuildModule}"
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
 
         release {
-            buildConfigField "boolean", "LOG_DEBUG", "false"
-            buildConfigField "boolean", "USE_CANARY", "false"
             buildConfigField "boolean", "IS_BUILD_MODULE", "${isBuildModule}"
             minifyEnabled true
             if (isBuildModule.toBoolean()) {
@@ -66,26 +60,30 @@ android {
             }
         }
     }
+
+    compileOptions {
+        targetCompatibility JavaVersion.VERSION_1_8
+        sourceCompatibility JavaVersion.VERSION_1_8
+    }
+
+}
+
+kapt {
+    arguments {
+        arg("AROUTER_MODULE_NAME", project.getName())
+    }
 }
 
 dependencies {
-    if (isBuildModule.toBoolean()) {
-        //view
-        annotationProcessor(rootProject.ext.dependencies["butterknife-compiler"]) {
-            exclude module: 'support-annotations'
-        }
-        //tools
-        annotationProcessor rootProject.ext.dependencies["dagger2-compiler"]
-        annotationProcessor rootProject.ext.dependencies["arouter-compiler"]
-        //test
-        debugImplementation rootProject.ext.dependencies["canary-debug"]
-        releaseImplementation rootProject.ext.dependencies["canary-release"]
-        testImplementation rootProject.ext.dependencies["canary-release"]
-    } else {
-        compileOnly rootProject.ext.dependencies["butterknife-compiler"]
-        compileOnly rootProject.ext.dependencies["dagger2-compiler"]
-        compileOnly rootProject.ext.dependencies["arouter-compiler"]
-        compileOnly rootProject.ext.dependencies["canary-debug"]
-        compileOnly rootProject.ext.dependencies["canary-release"]
-    }
+
+    testImplementation 'junit:junit:4.12'
+    androidTestImplementation 'androidx.test:runner:1.1.0-alpha4'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.1.0-alpha4'
+    kapt "com.alibaba:arouter-compiler:$versions.arouter_compiler"
+//    if (isBuildModule.toBoolean()) {
+//        //单独运行
+//    } else {
+//
+//
+//    }
 }

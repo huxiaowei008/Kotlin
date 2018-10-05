@@ -2,7 +2,7 @@ apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'//用于编译Android代码
 apply plugin: 'kotlin-android-extensions'//用于扩展绑定关系,通俗讲就是直接使用xml中的id
 apply plugin: 'kotlin-kapt'//那些注释处理需要用这个,就是annotationProcessor替换成kapt
-
+apply plugin: 'android-aspectjx'
 android {
     compileSdkVersion config.target_sdk
     defaultConfig {
@@ -29,22 +29,31 @@ android {
 //    sourceSets {
 //        main.java.srcDirs += 'src/main/kotlin'
 //    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
 }
 
+kapt {
+    arguments {
+        arg("AROUTER_MODULE_NAME", project.getName())
+    }
+}
 dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
     testImplementation 'junit:junit:4.12'
-    androidTestImplementation 'com.android.support.test:runner:1.0.2'
-    androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
+    androidTestImplementation 'androidx.test:runner:1.1.0-alpha4'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.1.0-alpha4'
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
-    implementation ("com.android.support:appcompat-v7:$versions.support"){
-        exclude group: 'android.arch.lifecycle'
-    }
-    implementation 'com.android.support.constraint:constraint-layout:1.1.2'
-//    implementation project(':frame')
-//
-//    kapt rootProject.ext.dependencies["dagger-compiler"]
-//    kapt rootProject.ext.dependencies["dagger-android-processor"]
-//    compile "org.jetbrains.kotlin:kotlin-stdlib-jre7:$kotlin_version"
-//    implementation 'com.github.CymChad:BaseRecyclerViewAdapterHelper:2.9.35'
+    implementation 'androidx.constraintlayout:constraintlayout:1.1.3'
+    implementation project(":commonsdk")
+    kapt "com.alibaba:arouter-compiler:$versions.arouter_compiler"
+
+        //在宿主 App 中使用 implementation 依赖业务组件, 业务组件的代码就会完全暴露给宿主 App, 不利于代码的隔离
+        //使用 runtimeOnly 依赖业务组件, 可实现业务组件的代码在编译时对宿主 App 不可见, 仅在运行时对宿主 App 可见
+        runtimeOnly project(":modulea")
+
+
 }

@@ -1,6 +1,7 @@
 package com.modoutech.kotlin.mvp.login
 
-import android.support.v7.app.AppCompatActivity
+import androidx.appcompat.app.AppCompatActivity
+
 
 /**
  * @author hxw
